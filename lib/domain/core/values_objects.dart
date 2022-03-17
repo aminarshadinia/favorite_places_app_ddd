@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:sample_app/domain/core/errors.dart';
 import 'package:sample_app/domain/core/failures.dart';
 
 @immutable
@@ -11,7 +12,14 @@ abstract class ValueObject<T> {
   Either<ValueFailure<T>, T> get value;
   // inside an abstract class we can have getter instead of final.
 
-  bool isValid () => value.isRight();
+  //code below throw UnExpectedValueError containing valueFailure
+  T getOrCrash() {
+    return value.fold(
+        (valueFailure) => throw UnExpectedValueError(valueFailure), (r) => r);
+  }
+  //T is the value or type of the value which is held inside valueObject
+
+  bool isValid() => value.isRight();
   // this is a helper method to indicate whther value is valid or not and be used in signif form bloc
 
   @override
