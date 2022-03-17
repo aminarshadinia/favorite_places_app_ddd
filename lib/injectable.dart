@@ -7,6 +7,6 @@ final GetIt getIt = GetIt.instance;
 
 @injectableInit
 void configureInjection(String env) {
-  $$initGetIt(getIt, enviroment, env);
+  $initGetIt(getIt, environment: env);
 }
  
