@@ -51,6 +51,15 @@ dev_dependencies:
   freezed: ^1.1.1
   injectable_generator: ^1.5.3
 
+
+dependency_overrides:
+  firebase_messaging_platform_interface: 3.1.6
+  firebase_storage_platform_interface: 4.0.14
+  cloud_functions_platform_interface: 5.0.21
+  cloud_firestore_platform_interface: 5.4.13
+  firebase_auth_platform_interface: 6.1.11
+  firebase_database_platform_interface: 0.2.0+5
+
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
