@@ -8,10 +8,10 @@ import './auth_failure.dart';
 // "Facade" is a design pattern which is used for connecting tw or more classes
 abstract class IAuthFacade {
   Future <Either<AuthFailure,Unit>> registerWithEmailAndPassword(
-      {required EmailAddress emailAddress, @required Password password});
+      {required EmailAddress emailAddress, required Password password});
 
   Future<Either<AuthFailure,Unit>> signInWithEmailAndPassword(
-      {required EmailAddress emailAddress, @required Password password});
+      {required EmailAddress emailAddress, required Password password});
 
   Future<Either<AuthFailure,Unit>> signInWithGoogle();
   // Future<Either<AuthFailure,String>> returnString();
