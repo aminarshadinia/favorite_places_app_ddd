@@ -39,6 +39,8 @@ dependencies:
   google_sign_in: ^5.2.4
   get_it: ^7.2.0
   injectable: ^1.5.3
+  another_flushbar: ^1.10.28
+  
 
 
 dev_dependencies:
