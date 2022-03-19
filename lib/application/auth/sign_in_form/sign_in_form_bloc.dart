@@ -14,13 +14,14 @@ part 'sign_in_form_bloc.freezed.dart';
 
 @injectable
 class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
-  late IAuthFacade _authFacade;
+  final IAuthFacade _authFacade;
 
-  SignInFormBloc(this._authFacade) : super(SignInFormState.initial());
+  SignInFormBloc.formBloc(this._authFacade) : super(SignInFormState.initial());
 
-  SignInFormBloc.formBloc() : super(SignInFormState.initial()) {
+  SignInFormBloc(this._authFacade) : super(SignInFormState.initial()) {
     on<SignInFormEvent>((event, emit) async {
-      await event.map(
+      
+       await event.map(
         emailChanged: (e) async {
           // we copy the already existing states with some newly change values in line below
           emit(state.copyWith(
@@ -32,7 +33,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         },
         passwordChanged: (e) async {
           emit(state.copyWith(
-            emailAddress: EmailAddress(e.passwordStr),
+            password: Password(e.passwordStr),
             authFailureOrSuccessOption: none(),
           ));
         },

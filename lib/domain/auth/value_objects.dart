@@ -7,6 +7,7 @@ import '../core/values_objects.dart';
 
 class EmailAddress extends ValueObject<String> {
   // in order to create value equality to EmailAdreses i used "dart data class extension"
+  @override
   final Either<ValueFailure<String>, String> value;
   //the most straightforward way of validating at instantiating time is to create "factory constructor",
   factory EmailAddress(String input) {
@@ -22,11 +23,12 @@ class EmailAddress extends ValueObject<String> {
 }
 
 class Password extends ValueObject<String> {
+  @override
   final Either<ValueFailure<String>, String> value;
   factory Password(String input) {
     assert(input != null);
     return Password._(
-      validateEmailAddress(input),
+      validatePassword(input),
     );
   }
 
