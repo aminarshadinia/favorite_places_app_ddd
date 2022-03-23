@@ -1,7 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:uuid/uuid.dart';
+
 import 'package:sample_app/domain/core/errors.dart';
 import 'package:sample_app/domain/core/failures.dart';
 
@@ -33,4 +35,27 @@ abstract class ValueObject<T> {
   int get hashCode => value.hashCode;
   @override
   String toString() => 'Value(v$value)';
+}
+
+
+class UniqueId extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>,String> value;
+  // uuid generates truely unique ids 
+  factory UniqueId() {
+    return UniqueId._(
+      right(const Uuid().v1()),
+    );
+  }
+
+// we have to trust DB ids which are unique
+  factory UniqueId.formUniqueString(String uniqueId) {
+    assert(uniqueId != null);
+    return UniqueId._(
+      right(uniqueId)
+    );
+  }
+
+  const UniqueId._(this.value);
+
 }
