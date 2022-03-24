@@ -18,3 +18,11 @@ Either<ValueFailure<String>, String> validatePassword(String input) {
     return left(ValueFailure.shortPassword(faildValue: input));
   }
 }
+
+Either<ValueFailure<String>, String> validateStringNotEmpty(String input) {
+  if (input.isNotEmpty) {
+    return right(input);
+  } else {
+    return left(ValueFailure.empty(faildValue: input));
+  }
+}
