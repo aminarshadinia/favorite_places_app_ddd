@@ -56,7 +56,7 @@ class _SignInFormState extends State<SignInForm> {
 
     return BlocConsumer<SignInFormBloc, SignInFormState>(
       listener: (context, state) {
-        state.authFailureOrSuccessOption.fold(
+         state.authFailureOrSuccessOption.fold(
           () {},
           (either) {
             either.fold(
@@ -268,6 +268,10 @@ class _SignInFormState extends State<SignInForm> {
                           ),
                         ]),
                       ),
+                      if(state.isSubmitting) ...[
+                        const SizedBox(height: 10,),
+                        const LinearProgressIndicator()
+                      ]
                     ],
                   ),
                 ),

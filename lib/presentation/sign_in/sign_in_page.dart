@@ -5,6 +5,7 @@ import 'package:sample_app/injectable.dart';
 import 'package:sample_app/presentation/sign_in/widgets/sign_in_form.dart';
 
 class SignInPage extends StatelessWidget {
+  static const routeName = '/signinPage';
   const SignInPage({Key? key}) : super(key: key);
 
   @override
