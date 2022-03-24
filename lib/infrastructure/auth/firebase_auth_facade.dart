@@ -13,14 +13,29 @@ import '../../domain/auth/user.dart';
 class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
-  User? currentUser = FirebaseAuth.instance.currentUser;
+  // User? currentUser = FirebaseAuth?.instance.currentUser;
+// var currUser = FirebaseAuth.instance.currentUser;
 
   FirebaseAuthFacade(this._firebaseAuth, this._googleSignIn);
 
+
+
   @override
   getSignedInUser() {
-    return some(Userz(id: UniqueId.formUniqueString(_firebaseAuth.currentUser!.uid)));
+    if (_firebaseAuth.currentUser != null) {
+      final user = _firebaseAuth.currentUser;
+      return some(Userz(id: UniqueId?.formUniqueString(user!.uid)));
+    }
+    // if (currUser != null) {
+      // return some(Userz(id: UniqueId.formUniqueString(_firebaseAuth.currentUser!.uid)));
+// }
   }
+
+  //   @override
+  // Future<Option<User>> getSignedInUser() async => _firebaseAuth
+  //     .currentUser()
+  //     .then((u) => optionOf(_firebaseUserMapper.toDomain(u)));
+
 
   @override
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
@@ -50,6 +65,7 @@ class FirebaseAuthFacade implements IAuthFacade {
     required EmailAddress emailAddress,
     required Password password,
   }) async {
+    print(_firebaseAuth.currentUser);
     final emailAddressStr = emailAddress.getOrCrash();
     final passwordStr = password.getOrCrash();
     // invalid email and weak password are handled before in login page
