@@ -21,12 +21,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       await event.map(
         authCheckRequested: (e) async {
           final userOption = await _authFacade.getSignedInUser();
-          emit(userOption.fold(
-            /* fold is like an if statemenet so if the re is none(userIsnotAuthenticated)
-            we want to emit sth and else emit sthelse */
-            () => const AuthState.unauthenticated(),
-            (_) => const AuthState.authenticated(),
-          ));
+          // List<Object> get props => [text, number];
+          // emit(
+          //   userOption.fold(
+          //   /* fold is like an if statemenet so if the re is none(userIsnotAuthenticated)
+          //   we want to emit sth and else emit sthelse */
+          //   () => const AuthState.unauthenticated(),
+          //   (_) => const AuthState.authenticated(),
+          // )
+          // );
+          emit(
+            userOption == null ? const AuthState.unauthenticated() : const AuthState.authenticated(), 
+          );
         },
         signedOut: (e) async {
           await _authFacade.signOut();
