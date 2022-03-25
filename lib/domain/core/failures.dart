@@ -18,4 +18,12 @@ abstract class ValueFailure<T> with _$ValueFailure<T> {
     required T faildValue,
   }) = Empty<T>;
 
+  const factory ValueFailure.emptyLocation({
+    required T faildValue,
+  }) = EmptyLocation<T>;
+
+  const factory ValueFailure.imageFormat({
+    required T faildValue,
+  }) = ImageFormat<T>;
+
 }
