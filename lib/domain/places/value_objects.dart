@@ -14,3 +14,27 @@ class PlaceTitle extends ValueObject<String> {
   }
   const PlaceTitle._(this.value);
 }
+
+class PlaceLocation extends ValueObject<Location> {
+  @override
+  final Either<ValueFailure<Location>, Location> value;
+  factory PlaceLocation(Location input) {
+    assert(input != null);
+    return PlaceLocation._(
+      validateLocationNotEmpty(input)
+    );
+  }
+  const PlaceLocation._(this.value);
+}
+
+class PlaceImage extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+  factory PlaceImage(String input) {
+    assert(input != null);
+    return PlaceImage._(
+      validateImageFormat(input)
+    );
+  }
+  const PlaceImage._(this.value);
+}
