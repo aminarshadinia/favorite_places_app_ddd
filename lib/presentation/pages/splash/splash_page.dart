@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sample_app/application/auth/auth_bloc.dart';
-import 'package:sample_app/presentation/sign_in/sign_in_page.dart';
+import 'package:sample_app/presentation/pages/places/places_list_page.dart';
+import 'package:sample_app/presentation/pages/sign_in/sign_in_page.dart';
 
 class SplashPage extends StatelessWidget {
   static const routeName = '/';
@@ -20,8 +21,7 @@ class SplashPage extends StatelessWidget {
           initial: (_) {},
           // if state is authenticated : code below
           authenticated: (_) {
-            print('im authenticated');
-            Navigator.of(context).pushNamed(SignInPage.routeName);
+            Navigator.of(context).pushNamed(PlacesListPage.routeName);
           },
           unauthenticated: (_) {
             Navigator.of(context).pushNamed(SignInPage.routeName);
