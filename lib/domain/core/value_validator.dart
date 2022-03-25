@@ -1,6 +1,14 @@
 import 'package:dartz/dartz.dart';
 import '../core/failures.dart';
 
+class Location {
+  final double latitude;
+  final double longitude;
+
+  Location(this.latitude, this.longitude);
+}
+
+
 Either<ValueFailure<String>, String> validateEmailAddress(String input) {
   var emailRegex =
       r"""^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+""";
@@ -26,3 +34,23 @@ Either<ValueFailure<String>, String> validateStringNotEmpty(String input) {
     return left(ValueFailure.empty(faildValue: input));
   }
 }
+
+Either<ValueFailure<Location>, Location> validateLocationNotEmpty(Location input) {
+  if (input != null) {
+    return right(input);
+  } else {
+    return left(ValueFailure.emptyLocation(faildValue: input));
+  }
+}
+Either<ValueFailure<String>, String> validateImageFormat(String input) {
+  
+  var imgUrlRegex =
+      r"""(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))""";
+  if (RegExp(imgUrlRegex).hasMatch(input)) {
+    return right(input);
+  } else {
+    return left(ValueFailure.imageFormat(faildValue: input));
+  }
+}
+
+
