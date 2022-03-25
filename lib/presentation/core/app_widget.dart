@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sample_app/application/auth/auth_bloc.dart';
 import 'package:sample_app/injectable.dart';
-import 'package:sample_app/presentation/sign_in/sign_in_page.dart';
-import 'package:sample_app/presentation/splash/splash_page.dart';
+import 'package:sample_app/presentation/pages/places/add_place_page.dart';
+import 'package:sample_app/presentation/pages/places/places_list_page.dart';
+import 'package:sample_app/presentation/pages/sign_in/sign_in_page.dart';
+import 'package:sample_app/presentation/pages/splash/splash_page.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({Key? key}) : super(key: key);
@@ -16,17 +18,18 @@ class AppWidget extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) =>
-              // we tell bloc to do sth right fro the get go
+              // we tell bloc to do sth right from the get go
               getIt<AuthBloc>()..add(const AuthEvent.authCheckRequested()),
         ),
       ],
       child: MaterialApp(
         title: 'Sample App',
-        // home: const SignInPage(),
         initialRoute: '/',
         routes: {
           SplashPage.routeName: (context) => const SplashPage(),
           SignInPage.routeName: (context) => const SignInPage(),
+          PlacesListPage.routeName: (context) => const PlacesListPage(),
+          AddPlacePage.routeName: (context) => const AddPlacePage(),
         },
         theme: ThemeData.dark().copyWith(
           primaryColor: Colors.blue,

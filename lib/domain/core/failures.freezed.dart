@@ -35,6 +35,18 @@ class _$ValueFailureTearOff {
       faildValue: faildValue,
     );
   }
+
+  EmptyLocation<T> emptyLocation<T>({required T faildValue}) {
+    return EmptyLocation<T>(
+      faildValue: faildValue,
+    );
+  }
+
+  ImageFormat<T> imageFormat<T>({required T faildValue}) {
+    return ImageFormat<T>(
+      faildValue: faildValue,
+    );
+  }
 }
 
 /// @nodoc
@@ -49,6 +61,8 @@ mixin _$ValueFailure<T> {
     required TResult Function(T faildValue) invalidEmail,
     required TResult Function(T faildValue) shortPassword,
     required TResult Function(T faildValue) empty,
+    required TResult Function(T faildValue) emptyLocation,
+    required TResult Function(T faildValue) imageFormat,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,6 +70,8 @@ mixin _$ValueFailure<T> {
     TResult Function(T faildValue)? invalidEmail,
     TResult Function(T faildValue)? shortPassword,
     TResult Function(T faildValue)? empty,
+    TResult Function(T faildValue)? emptyLocation,
+    TResult Function(T faildValue)? imageFormat,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +79,8 @@ mixin _$ValueFailure<T> {
     TResult Function(T faildValue)? invalidEmail,
     TResult Function(T faildValue)? shortPassword,
     TResult Function(T faildValue)? empty,
+    TResult Function(T faildValue)? emptyLocation,
+    TResult Function(T faildValue)? imageFormat,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -71,6 +89,8 @@ mixin _$ValueFailure<T> {
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(Empty<T> value) empty,
+    required TResult Function(EmptyLocation<T> value) emptyLocation,
+    required TResult Function(ImageFormat<T> value) imageFormat,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -78,6 +98,8 @@ mixin _$ValueFailure<T> {
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(Empty<T> value)? empty,
+    TResult Function(EmptyLocation<T> value)? emptyLocation,
+    TResult Function(ImageFormat<T> value)? imageFormat,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -85,6 +107,8 @@ mixin _$ValueFailure<T> {
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(Empty<T> value)? empty,
+    TResult Function(EmptyLocation<T> value)? emptyLocation,
+    TResult Function(ImageFormat<T> value)? imageFormat,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -205,6 +229,8 @@ class _$InvalidEmail<T>
     required TResult Function(T faildValue) invalidEmail,
     required TResult Function(T faildValue) shortPassword,
     required TResult Function(T faildValue) empty,
+    required TResult Function(T faildValue) emptyLocation,
+    required TResult Function(T faildValue) imageFormat,
   }) {
     return invalidEmail(faildValue);
   }
@@ -215,6 +241,8 @@ class _$InvalidEmail<T>
     TResult Function(T faildValue)? invalidEmail,
     TResult Function(T faildValue)? shortPassword,
     TResult Function(T faildValue)? empty,
+    TResult Function(T faildValue)? emptyLocation,
+    TResult Function(T faildValue)? imageFormat,
   }) {
     return invalidEmail?.call(faildValue);
   }
@@ -225,6 +253,8 @@ class _$InvalidEmail<T>
     TResult Function(T faildValue)? invalidEmail,
     TResult Function(T faildValue)? shortPassword,
     TResult Function(T faildValue)? empty,
+    TResult Function(T faildValue)? emptyLocation,
+    TResult Function(T faildValue)? imageFormat,
     required TResult orElse(),
   }) {
     if (invalidEmail != null) {
@@ -239,6 +269,8 @@ class _$InvalidEmail<T>
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(Empty<T> value) empty,
+    required TResult Function(EmptyLocation<T> value) emptyLocation,
+    required TResult Function(ImageFormat<T> value) imageFormat,
   }) {
     return invalidEmail(this);
   }
@@ -249,6 +281,8 @@ class _$InvalidEmail<T>
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(Empty<T> value)? empty,
+    TResult Function(EmptyLocation<T> value)? emptyLocation,
+    TResult Function(ImageFormat<T> value)? imageFormat,
   }) {
     return invalidEmail?.call(this);
   }
@@ -259,6 +293,8 @@ class _$InvalidEmail<T>
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(Empty<T> value)? empty,
+    TResult Function(EmptyLocation<T> value)? emptyLocation,
+    TResult Function(ImageFormat<T> value)? imageFormat,
     required TResult orElse(),
   }) {
     if (invalidEmail != null) {
@@ -360,6 +396,8 @@ class _$ShortPassword<T>
     required TResult Function(T faildValue) invalidEmail,
     required TResult Function(T faildValue) shortPassword,
     required TResult Function(T faildValue) empty,
+    required TResult Function(T faildValue) emptyLocation,
+    required TResult Function(T faildValue) imageFormat,
   }) {
     return shortPassword(faildValue);
   }
@@ -370,6 +408,8 @@ class _$ShortPassword<T>
     TResult Function(T faildValue)? invalidEmail,
     TResult Function(T faildValue)? shortPassword,
     TResult Function(T faildValue)? empty,
+    TResult Function(T faildValue)? emptyLocation,
+    TResult Function(T faildValue)? imageFormat,
   }) {
     return shortPassword?.call(faildValue);
   }
@@ -380,6 +420,8 @@ class _$ShortPassword<T>
     TResult Function(T faildValue)? invalidEmail,
     TResult Function(T faildValue)? shortPassword,
     TResult Function(T faildValue)? empty,
+    TResult Function(T faildValue)? emptyLocation,
+    TResult Function(T faildValue)? imageFormat,
     required TResult orElse(),
   }) {
     if (shortPassword != null) {
@@ -394,6 +436,8 @@ class _$ShortPassword<T>
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(Empty<T> value) empty,
+    required TResult Function(EmptyLocation<T> value) emptyLocation,
+    required TResult Function(ImageFormat<T> value) imageFormat,
   }) {
     return shortPassword(this);
   }
@@ -404,6 +448,8 @@ class _$ShortPassword<T>
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(Empty<T> value)? empty,
+    TResult Function(EmptyLocation<T> value)? emptyLocation,
+    TResult Function(ImageFormat<T> value)? imageFormat,
   }) {
     return shortPassword?.call(this);
   }
@@ -414,6 +460,8 @@ class _$ShortPassword<T>
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(Empty<T> value)? empty,
+    TResult Function(EmptyLocation<T> value)? emptyLocation,
+    TResult Function(ImageFormat<T> value)? imageFormat,
     required TResult orElse(),
   }) {
     if (shortPassword != null) {
@@ -510,6 +558,8 @@ class _$Empty<T> with DiagnosticableTreeMixin implements Empty<T> {
     required TResult Function(T faildValue) invalidEmail,
     required TResult Function(T faildValue) shortPassword,
     required TResult Function(T faildValue) empty,
+    required TResult Function(T faildValue) emptyLocation,
+    required TResult Function(T faildValue) imageFormat,
   }) {
     return empty(faildValue);
   }
@@ -520,6 +570,8 @@ class _$Empty<T> with DiagnosticableTreeMixin implements Empty<T> {
     TResult Function(T faildValue)? invalidEmail,
     TResult Function(T faildValue)? shortPassword,
     TResult Function(T faildValue)? empty,
+    TResult Function(T faildValue)? emptyLocation,
+    TResult Function(T faildValue)? imageFormat,
   }) {
     return empty?.call(faildValue);
   }
@@ -530,6 +582,8 @@ class _$Empty<T> with DiagnosticableTreeMixin implements Empty<T> {
     TResult Function(T faildValue)? invalidEmail,
     TResult Function(T faildValue)? shortPassword,
     TResult Function(T faildValue)? empty,
+    TResult Function(T faildValue)? emptyLocation,
+    TResult Function(T faildValue)? imageFormat,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -544,6 +598,8 @@ class _$Empty<T> with DiagnosticableTreeMixin implements Empty<T> {
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(Empty<T> value) empty,
+    required TResult Function(EmptyLocation<T> value) emptyLocation,
+    required TResult Function(ImageFormat<T> value) imageFormat,
   }) {
     return empty(this);
   }
@@ -554,6 +610,8 @@ class _$Empty<T> with DiagnosticableTreeMixin implements Empty<T> {
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(Empty<T> value)? empty,
+    TResult Function(EmptyLocation<T> value)? emptyLocation,
+    TResult Function(ImageFormat<T> value)? imageFormat,
   }) {
     return empty?.call(this);
   }
@@ -564,6 +622,8 @@ class _$Empty<T> with DiagnosticableTreeMixin implements Empty<T> {
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(Empty<T> value)? empty,
+    TResult Function(EmptyLocation<T> value)? emptyLocation,
+    TResult Function(ImageFormat<T> value)? imageFormat,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -581,5 +641,337 @@ abstract class Empty<T> implements ValueFailure<T> {
   @override
   @JsonKey(ignore: true)
   $EmptyCopyWith<T, Empty<T>> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $EmptyLocationCopyWith<T, $Res>
+    implements $ValueFailureCopyWith<T, $Res> {
+  factory $EmptyLocationCopyWith(
+          EmptyLocation<T> value, $Res Function(EmptyLocation<T>) then) =
+      _$EmptyLocationCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T faildValue});
+}
+
+/// @nodoc
+class _$EmptyLocationCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res>
+    implements $EmptyLocationCopyWith<T, $Res> {
+  _$EmptyLocationCopyWithImpl(
+      EmptyLocation<T> _value, $Res Function(EmptyLocation<T>) _then)
+      : super(_value, (v) => _then(v as EmptyLocation<T>));
+
+  @override
+  EmptyLocation<T> get _value => super._value as EmptyLocation<T>;
+
+  @override
+  $Res call({
+    Object? faildValue = freezed,
+  }) {
+    return _then(EmptyLocation<T>(
+      faildValue: faildValue == freezed
+          ? _value.faildValue
+          : faildValue // ignore: cast_nullable_to_non_nullable
+              as T,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$EmptyLocation<T>
+    with DiagnosticableTreeMixin
+    implements EmptyLocation<T> {
+  const _$EmptyLocation({required this.faildValue});
+
+  @override
+  final T faildValue;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ValueFailure<$T>.emptyLocation(faildValue: $faildValue)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ValueFailure<$T>.emptyLocation'))
+      ..add(DiagnosticsProperty('faildValue', faildValue));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is EmptyLocation<T> &&
+            const DeepCollectionEquality()
+                .equals(other.faildValue, faildValue));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(faildValue));
+
+  @JsonKey(ignore: true)
+  @override
+  $EmptyLocationCopyWith<T, EmptyLocation<T>> get copyWith =>
+      _$EmptyLocationCopyWithImpl<T, EmptyLocation<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T faildValue) invalidEmail,
+    required TResult Function(T faildValue) shortPassword,
+    required TResult Function(T faildValue) empty,
+    required TResult Function(T faildValue) emptyLocation,
+    required TResult Function(T faildValue) imageFormat,
+  }) {
+    return emptyLocation(faildValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T faildValue)? invalidEmail,
+    TResult Function(T faildValue)? shortPassword,
+    TResult Function(T faildValue)? empty,
+    TResult Function(T faildValue)? emptyLocation,
+    TResult Function(T faildValue)? imageFormat,
+  }) {
+    return emptyLocation?.call(faildValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T faildValue)? invalidEmail,
+    TResult Function(T faildValue)? shortPassword,
+    TResult Function(T faildValue)? empty,
+    TResult Function(T faildValue)? emptyLocation,
+    TResult Function(T faildValue)? imageFormat,
+    required TResult orElse(),
+  }) {
+    if (emptyLocation != null) {
+      return emptyLocation(faildValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InvalidEmail<T> value) invalidEmail,
+    required TResult Function(ShortPassword<T> value) shortPassword,
+    required TResult Function(Empty<T> value) empty,
+    required TResult Function(EmptyLocation<T> value) emptyLocation,
+    required TResult Function(ImageFormat<T> value) imageFormat,
+  }) {
+    return emptyLocation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(InvalidEmail<T> value)? invalidEmail,
+    TResult Function(ShortPassword<T> value)? shortPassword,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(EmptyLocation<T> value)? emptyLocation,
+    TResult Function(ImageFormat<T> value)? imageFormat,
+  }) {
+    return emptyLocation?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InvalidEmail<T> value)? invalidEmail,
+    TResult Function(ShortPassword<T> value)? shortPassword,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(EmptyLocation<T> value)? emptyLocation,
+    TResult Function(ImageFormat<T> value)? imageFormat,
+    required TResult orElse(),
+  }) {
+    if (emptyLocation != null) {
+      return emptyLocation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EmptyLocation<T> implements ValueFailure<T> {
+  const factory EmptyLocation({required T faildValue}) = _$EmptyLocation<T>;
+
+  @override
+  T get faildValue;
+  @override
+  @JsonKey(ignore: true)
+  $EmptyLocationCopyWith<T, EmptyLocation<T>> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ImageFormatCopyWith<T, $Res>
+    implements $ValueFailureCopyWith<T, $Res> {
+  factory $ImageFormatCopyWith(
+          ImageFormat<T> value, $Res Function(ImageFormat<T>) then) =
+      _$ImageFormatCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T faildValue});
+}
+
+/// @nodoc
+class _$ImageFormatCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res>
+    implements $ImageFormatCopyWith<T, $Res> {
+  _$ImageFormatCopyWithImpl(
+      ImageFormat<T> _value, $Res Function(ImageFormat<T>) _then)
+      : super(_value, (v) => _then(v as ImageFormat<T>));
+
+  @override
+  ImageFormat<T> get _value => super._value as ImageFormat<T>;
+
+  @override
+  $Res call({
+    Object? faildValue = freezed,
+  }) {
+    return _then(ImageFormat<T>(
+      faildValue: faildValue == freezed
+          ? _value.faildValue
+          : faildValue // ignore: cast_nullable_to_non_nullable
+              as T,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ImageFormat<T> with DiagnosticableTreeMixin implements ImageFormat<T> {
+  const _$ImageFormat({required this.faildValue});
+
+  @override
+  final T faildValue;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ValueFailure<$T>.imageFormat(faildValue: $faildValue)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ValueFailure<$T>.imageFormat'))
+      ..add(DiagnosticsProperty('faildValue', faildValue));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ImageFormat<T> &&
+            const DeepCollectionEquality()
+                .equals(other.faildValue, faildValue));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(faildValue));
+
+  @JsonKey(ignore: true)
+  @override
+  $ImageFormatCopyWith<T, ImageFormat<T>> get copyWith =>
+      _$ImageFormatCopyWithImpl<T, ImageFormat<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T faildValue) invalidEmail,
+    required TResult Function(T faildValue) shortPassword,
+    required TResult Function(T faildValue) empty,
+    required TResult Function(T faildValue) emptyLocation,
+    required TResult Function(T faildValue) imageFormat,
+  }) {
+    return imageFormat(faildValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T faildValue)? invalidEmail,
+    TResult Function(T faildValue)? shortPassword,
+    TResult Function(T faildValue)? empty,
+    TResult Function(T faildValue)? emptyLocation,
+    TResult Function(T faildValue)? imageFormat,
+  }) {
+    return imageFormat?.call(faildValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T faildValue)? invalidEmail,
+    TResult Function(T faildValue)? shortPassword,
+    TResult Function(T faildValue)? empty,
+    TResult Function(T faildValue)? emptyLocation,
+    TResult Function(T faildValue)? imageFormat,
+    required TResult orElse(),
+  }) {
+    if (imageFormat != null) {
+      return imageFormat(faildValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InvalidEmail<T> value) invalidEmail,
+    required TResult Function(ShortPassword<T> value) shortPassword,
+    required TResult Function(Empty<T> value) empty,
+    required TResult Function(EmptyLocation<T> value) emptyLocation,
+    required TResult Function(ImageFormat<T> value) imageFormat,
+  }) {
+    return imageFormat(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(InvalidEmail<T> value)? invalidEmail,
+    TResult Function(ShortPassword<T> value)? shortPassword,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(EmptyLocation<T> value)? emptyLocation,
+    TResult Function(ImageFormat<T> value)? imageFormat,
+  }) {
+    return imageFormat?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InvalidEmail<T> value)? invalidEmail,
+    TResult Function(ShortPassword<T> value)? shortPassword,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(EmptyLocation<T> value)? emptyLocation,
+    TResult Function(ImageFormat<T> value)? imageFormat,
+    required TResult orElse(),
+  }) {
+    if (imageFormat != null) {
+      return imageFormat(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ImageFormat<T> implements ValueFailure<T> {
+  const factory ImageFormat({required T faildValue}) = _$ImageFormat<T>;
+
+  @override
+  T get faildValue;
+  @override
+  @JsonKey(ignore: true)
+  $ImageFormatCopyWith<T, ImageFormat<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
