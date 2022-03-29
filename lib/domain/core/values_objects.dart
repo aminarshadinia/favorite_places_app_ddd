@@ -21,6 +21,13 @@ abstract class ValueObject<T> {
   }
   //T is the value or type of the value which is held inside valueObject
 
+  Either<ValueFailure<dynamic>, Unit> get failureOrUnit {
+    return value.fold(
+      (l) => left(l),
+      (r) => right(unit),
+    );
+  }
+
   bool isValid() => value.isRight();
   // this is a helper method to indicate whther value is valid or not and be used in signif form bloc
 
@@ -37,11 +44,10 @@ abstract class ValueObject<T> {
   String toString() => 'Value(v$value)';
 }
 
-
 class UniqueId extends ValueObject<String> {
   @override
-  final Either<ValueFailure<String>,String> value;
-  // uuid generates truely unique ids 
+  final Either<ValueFailure<String>, String> value;
+  // uuid generates truely unique ids
   factory UniqueId() {
     return UniqueId._(
       right(const Uuid().v1()),
@@ -51,11 +57,8 @@ class UniqueId extends ValueObject<String> {
 // we have to trust DB ids which are unique
   factory UniqueId.formUniqueString(String uniqueId) {
     assert(uniqueId != null);
-    return UniqueId._(
-      right(uniqueId)
-    );
+    return UniqueId._(right(uniqueId));
   }
 
   const UniqueId._(this.value);
-
 }
