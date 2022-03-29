@@ -7,16 +7,23 @@ import 'package:sample_app/domain/auth/auth_failure.dart';
 import 'package:sample_app/domain/auth/i_auth_facade.dart';
 import 'package:sample_app/domain/auth/value_objects.dart';
 import 'package:sample_app/domain/core/values_objects.dart';
+import 'package:sample_app/infrastructure/auth/firebase_user_mapper.dart';
 import '../../domain/auth/user.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 @LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
+  final FirebaseUserMapper _firebaseUserMapper;
   // User? currentUser = FirebaseAuth?.instance.currentUser;
 // var currUser = FirebaseAuth.instance.currentUser;
 
-  FirebaseAuthFacade(this._firebaseAuth, this._googleSignIn);
+  FirebaseAuthFacade(this._firebaseAuth, this._googleSignIn, this._firebaseUserMapper);
+
+  //  @override
+  // Future<Option<Userz>> getSignedInUser() async => _firebaseAuth!.currentUser!.then((u) => optionOf(_firebaseUserMapper.toDomain(u)));
 
 
 
@@ -26,9 +33,6 @@ class FirebaseAuthFacade implements IAuthFacade {
       final user = _firebaseAuth.currentUser;
       return some(Userz(id: UniqueId?.formUniqueString(user!.uid)));
     }
-    // if (currUser != null) {
-      // return some(Userz(id: UniqueId.formUniqueString(_firebaseAuth.currentUser!.uid)));
-// }
   }
 
   //   @override
@@ -44,6 +48,7 @@ class FirebaseAuthFacade implements IAuthFacade {
   }) async {
     final emailAddressStr = emailAddress.getOrCrash();
     final passwordStr = password.getOrCrash();
+    // _firebaseAuth.currentUser().then((value) => value.uid);
     // invalid email and weak password are handled before in login page
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
