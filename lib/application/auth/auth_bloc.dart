@@ -15,6 +15,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final IAuthFacade _authFacade;
 
   AuthBloc.authBloc(this._authFacade) : super(const AuthState.initial());
+  // AuthState get initialState => const AuthState.initial();
 
   AuthBloc(this._authFacade) : super(const AuthState.initial()) {
     on<AuthEvent>((event, emit) async {
@@ -22,13 +23,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         authCheckRequested: (e) async {
           final userOption = await _authFacade.getSignedInUser();
           // List<Object> get props => [text, number];
+
           // emit(
           //   userOption.fold(
-          //   /* fold is like an if statemenet so if the re is none(userIsnotAuthenticated)
-          //   we want to emit sth and else emit sthelse */
-          //   () => const AuthState.unauthenticated(),
-          //   (_) => const AuthState.authenticated(),
-          // )
+          //     () => const AuthState.authenticated(),
+          //     (user) => const AuthState.authenticated(),
+          //   )
           // );
           emit(
             userOption == null ? const AuthState.unauthenticated() : const AuthState.authenticated(), 
