@@ -4,7 +4,9 @@ import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:sample_app/application/auth/auth_bloc.dart';
 import 'package:sample_app/application/auth/sign_in_form/sign_in_form_bloc.dart';
+import 'package:sample_app/presentation/pages/places/places_list_page.dart';
 
 enum AuthMode { signUp, login }
 
@@ -72,7 +74,11 @@ class _SignInFormState extends State<SignInForm> {
                   ),
                 ).show(context);
               },
-              (_) {},
+              (_) {
+                Navigator.of(context).pushNamed(PlacesListPage.routeName);
+                // once the use is signes is the state of authentication will change to 'authenticated' 
+                context.read<AuthBloc>().add(const AuthEvent.authCheckRequested());
+              },
             );
           },
         );
@@ -203,6 +209,8 @@ class _SignInFormState extends State<SignInForm> {
                                     const SignInFormEvent
                                         .registerWithEmailAndPasswordPressed(),
                                   );
+                                        print('signin / register clicked');
+
                         },
                         style: elevatedStyle,
                         child: Text(
