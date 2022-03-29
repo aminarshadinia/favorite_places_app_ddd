@@ -9,7 +9,7 @@ import './user.dart';
 // "Facade" is a design pattern which is used for connecting tw or more classes
 abstract class IAuthFacade {
   getSignedInUser();
-
+// Future<Option<Userz>> getSignedInUser();
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword(
       {required EmailAddress emailAddress, required Password password});
 
