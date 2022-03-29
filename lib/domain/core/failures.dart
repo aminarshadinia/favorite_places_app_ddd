@@ -18,9 +18,13 @@ abstract class ValueFailure<T> with _$ValueFailure<T> {
     required T faildValue,
   }) = Empty<T>;
 
-  const factory ValueFailure.emptyLocation({
+  const factory ValueFailure.emptyLatitude({
     required T faildValue,
-  }) = EmptyLocation<T>;
+  }) = EmptyLatitude<T>;
+  
+  const factory ValueFailure.emptyLongitude({
+    required T faildValue,
+  }) = EmptyLongitude<T>;
 
   const factory ValueFailure.imageFormat({
     required T faildValue,
