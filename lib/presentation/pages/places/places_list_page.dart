@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sample_app/application/auth/auth_bloc.dart';
 import 'package:sample_app/presentation/pages/places/add_place_page.dart';
-import 'package:sample_app/presentation/pages/places/widgets/dio_location.dart';
 
 class PlacesListPage extends StatelessWidget {
   static const routeName = '/placesList';
@@ -11,6 +12,12 @@ class PlacesListPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Your Places'),
+          leading: IconButton(
+            onPressed: () {
+              context.read<AuthBloc>().add(const AuthEvent.signedOut());
+            },
+            icon: const Icon(Icons.exit_to_app),
+          ),
           actions: [
             IconButton(
               onPressed: () {
@@ -20,6 +27,6 @@ class PlacesListPage extends StatelessWidget {
             ),
           ],
         ),
-        body: MapScreen());
+        body: Text('PLACES PAGE'));
   }
 }
