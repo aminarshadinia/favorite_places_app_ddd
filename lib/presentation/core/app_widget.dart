@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sample_app/application/auth/auth_bloc.dart';
 import 'package:sample_app/injectable.dart';
 import 'package:sample_app/presentation/pages/places/add_place_page.dart';
-import 'package:sample_app/presentation/pages/places/places_list_page.dart';
+import 'package:sample_app/presentation/pages/places/place_list_overview/places_list_page.dart';
 import 'package:sample_app/presentation/pages/sign_in/sign_in_page.dart';
 import 'package:sample_app/presentation/pages/splash/splash_page.dart';
 
@@ -18,8 +18,8 @@ class AppWidget extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) =>
-              // we tell bloc to do sth right from the get go
               getIt<AuthBloc>()..add(const AuthEvent.authCheckRequested()),
+              // we tell bloc to do sth right from the get go
         ),
       ],
       child: MaterialApp(

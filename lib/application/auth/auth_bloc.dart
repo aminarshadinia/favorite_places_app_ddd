@@ -22,10 +22,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       await event.map(
         authCheckRequested: (e) async {
           final userOption = await _authFacade.getSignedInUser();
+          // print(userOption);
           // List<Object> get props => [text, number];
 
           // emit(
-          //   userOption.fold(
+          //   userOption?.fold(
           //     () => const AuthState.authenticated(),
           //     (user) => const AuthState.authenticated(),
           //   )

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sample_app/application/auth/auth_bloc.dart';
-import 'package:sample_app/presentation/pages/places/places_list_page.dart';
+import 'package:sample_app/presentation/pages/places/place_list_overview/places_list_page.dart';
 import 'package:sample_app/presentation/pages/sign_in/sign_in_page.dart';
 
 class SplashPage extends StatelessWidget {

@@ -25,6 +25,12 @@ class _$PlaceWatcherEventTearOff {
   _WatchUncompleteStarted watchUncompleteStarted() {
     return const _WatchUncompleteStarted();
   }
+
+  _PlacesReceived placesReceived(Either<PlaceFailure, Place> failureOrPlaces) {
+    return _PlacesReceived(
+      failureOrPlaces,
+    );
+  }
 }
 
 /// @nodoc
@@ -36,18 +42,24 @@ mixin _$PlaceWatcherEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() watchAllStarted,
     required TResult Function() watchUncompleteStarted,
+    required TResult Function(Either<PlaceFailure, Place> failureOrPlaces)
+        placesReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? watchAllStarted,
     TResult Function()? watchUncompleteStarted,
+    TResult Function(Either<PlaceFailure, Place> failureOrPlaces)?
+        placesReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watchAllStarted,
     TResult Function()? watchUncompleteStarted,
+    TResult Function(Either<PlaceFailure, Place> failureOrPlaces)?
+        placesReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -56,18 +68,21 @@ mixin _$PlaceWatcherEvent {
     required TResult Function(_WatchAllStarted value) watchAllStarted,
     required TResult Function(_WatchUncompleteStarted value)
         watchUncompleteStarted,
+    required TResult Function(_PlacesReceived value) placesReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_WatchAllStarted value)? watchAllStarted,
     TResult Function(_WatchUncompleteStarted value)? watchUncompleteStarted,
+    TResult Function(_PlacesReceived value)? placesReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_WatchAllStarted value)? watchAllStarted,
     TResult Function(_WatchUncompleteStarted value)? watchUncompleteStarted,
+    TResult Function(_PlacesReceived value)? placesReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -133,6 +148,8 @@ class _$_WatchAllStarted implements _WatchAllStarted {
   TResult when<TResult extends Object?>({
     required TResult Function() watchAllStarted,
     required TResult Function() watchUncompleteStarted,
+    required TResult Function(Either<PlaceFailure, Place> failureOrPlaces)
+        placesReceived,
   }) {
     return watchAllStarted();
   }
@@ -142,6 +159,8 @@ class _$_WatchAllStarted implements _WatchAllStarted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? watchAllStarted,
     TResult Function()? watchUncompleteStarted,
+    TResult Function(Either<PlaceFailure, Place> failureOrPlaces)?
+        placesReceived,
   }) {
     return watchAllStarted?.call();
   }
@@ -151,6 +170,8 @@ class _$_WatchAllStarted implements _WatchAllStarted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watchAllStarted,
     TResult Function()? watchUncompleteStarted,
+    TResult Function(Either<PlaceFailure, Place> failureOrPlaces)?
+        placesReceived,
     required TResult orElse(),
   }) {
     if (watchAllStarted != null) {
@@ -165,6 +186,7 @@ class _$_WatchAllStarted implements _WatchAllStarted {
     required TResult Function(_WatchAllStarted value) watchAllStarted,
     required TResult Function(_WatchUncompleteStarted value)
         watchUncompleteStarted,
+    required TResult Function(_PlacesReceived value) placesReceived,
   }) {
     return watchAllStarted(this);
   }
@@ -174,6 +196,7 @@ class _$_WatchAllStarted implements _WatchAllStarted {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_WatchAllStarted value)? watchAllStarted,
     TResult Function(_WatchUncompleteStarted value)? watchUncompleteStarted,
+    TResult Function(_PlacesReceived value)? placesReceived,
   }) {
     return watchAllStarted?.call(this);
   }
@@ -183,6 +206,7 @@ class _$_WatchAllStarted implements _WatchAllStarted {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_WatchAllStarted value)? watchAllStarted,
     TResult Function(_WatchUncompleteStarted value)? watchUncompleteStarted,
+    TResult Function(_PlacesReceived value)? placesReceived,
     required TResult orElse(),
   }) {
     if (watchAllStarted != null) {
@@ -239,6 +263,8 @@ class _$_WatchUncompleteStarted implements _WatchUncompleteStarted {
   TResult when<TResult extends Object?>({
     required TResult Function() watchAllStarted,
     required TResult Function() watchUncompleteStarted,
+    required TResult Function(Either<PlaceFailure, Place> failureOrPlaces)
+        placesReceived,
   }) {
     return watchUncompleteStarted();
   }
@@ -248,6 +274,8 @@ class _$_WatchUncompleteStarted implements _WatchUncompleteStarted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? watchAllStarted,
     TResult Function()? watchUncompleteStarted,
+    TResult Function(Either<PlaceFailure, Place> failureOrPlaces)?
+        placesReceived,
   }) {
     return watchUncompleteStarted?.call();
   }
@@ -257,6 +285,8 @@ class _$_WatchUncompleteStarted implements _WatchUncompleteStarted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watchAllStarted,
     TResult Function()? watchUncompleteStarted,
+    TResult Function(Either<PlaceFailure, Place> failureOrPlaces)?
+        placesReceived,
     required TResult orElse(),
   }) {
     if (watchUncompleteStarted != null) {
@@ -271,6 +301,7 @@ class _$_WatchUncompleteStarted implements _WatchUncompleteStarted {
     required TResult Function(_WatchAllStarted value) watchAllStarted,
     required TResult Function(_WatchUncompleteStarted value)
         watchUncompleteStarted,
+    required TResult Function(_PlacesReceived value) placesReceived,
   }) {
     return watchUncompleteStarted(this);
   }
@@ -280,6 +311,7 @@ class _$_WatchUncompleteStarted implements _WatchUncompleteStarted {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_WatchAllStarted value)? watchAllStarted,
     TResult Function(_WatchUncompleteStarted value)? watchUncompleteStarted,
+    TResult Function(_PlacesReceived value)? placesReceived,
   }) {
     return watchUncompleteStarted?.call(this);
   }
@@ -289,6 +321,7 @@ class _$_WatchUncompleteStarted implements _WatchUncompleteStarted {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_WatchAllStarted value)? watchAllStarted,
     TResult Function(_WatchUncompleteStarted value)? watchUncompleteStarted,
+    TResult Function(_PlacesReceived value)? placesReceived,
     required TResult orElse(),
   }) {
     if (watchUncompleteStarted != null) {
@@ -300,6 +333,152 @@ class _$_WatchUncompleteStarted implements _WatchUncompleteStarted {
 
 abstract class _WatchUncompleteStarted implements PlaceWatcherEvent {
   const factory _WatchUncompleteStarted() = _$_WatchUncompleteStarted;
+}
+
+/// @nodoc
+abstract class _$PlacesReceivedCopyWith<$Res> {
+  factory _$PlacesReceivedCopyWith(
+          _PlacesReceived value, $Res Function(_PlacesReceived) then) =
+      __$PlacesReceivedCopyWithImpl<$Res>;
+  $Res call({Either<PlaceFailure, Place> failureOrPlaces});
+}
+
+/// @nodoc
+class __$PlacesReceivedCopyWithImpl<$Res>
+    extends _$PlaceWatcherEventCopyWithImpl<$Res>
+    implements _$PlacesReceivedCopyWith<$Res> {
+  __$PlacesReceivedCopyWithImpl(
+      _PlacesReceived _value, $Res Function(_PlacesReceived) _then)
+      : super(_value, (v) => _then(v as _PlacesReceived));
+
+  @override
+  _PlacesReceived get _value => super._value as _PlacesReceived;
+
+  @override
+  $Res call({
+    Object? failureOrPlaces = freezed,
+  }) {
+    return _then(_PlacesReceived(
+      failureOrPlaces == freezed
+          ? _value.failureOrPlaces
+          : failureOrPlaces // ignore: cast_nullable_to_non_nullable
+              as Either<PlaceFailure, Place>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_PlacesReceived implements _PlacesReceived {
+  const _$_PlacesReceived(this.failureOrPlaces);
+
+  @override
+  final Either<PlaceFailure, Place> failureOrPlaces;
+
+  @override
+  String toString() {
+    return 'PlaceWatcherEvent.placesReceived(failureOrPlaces: $failureOrPlaces)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _PlacesReceived &&
+            const DeepCollectionEquality()
+                .equals(other.failureOrPlaces, failureOrPlaces));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(failureOrPlaces));
+
+  @JsonKey(ignore: true)
+  @override
+  _$PlacesReceivedCopyWith<_PlacesReceived> get copyWith =>
+      __$PlacesReceivedCopyWithImpl<_PlacesReceived>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() watchAllStarted,
+    required TResult Function() watchUncompleteStarted,
+    required TResult Function(Either<PlaceFailure, Place> failureOrPlaces)
+        placesReceived,
+  }) {
+    return placesReceived(failureOrPlaces);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? watchAllStarted,
+    TResult Function()? watchUncompleteStarted,
+    TResult Function(Either<PlaceFailure, Place> failureOrPlaces)?
+        placesReceived,
+  }) {
+    return placesReceived?.call(failureOrPlaces);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? watchAllStarted,
+    TResult Function()? watchUncompleteStarted,
+    TResult Function(Either<PlaceFailure, Place> failureOrPlaces)?
+        placesReceived,
+    required TResult orElse(),
+  }) {
+    if (placesReceived != null) {
+      return placesReceived(failureOrPlaces);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_WatchAllStarted value) watchAllStarted,
+    required TResult Function(_WatchUncompleteStarted value)
+        watchUncompleteStarted,
+    required TResult Function(_PlacesReceived value) placesReceived,
+  }) {
+    return placesReceived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_WatchAllStarted value)? watchAllStarted,
+    TResult Function(_WatchUncompleteStarted value)? watchUncompleteStarted,
+    TResult Function(_PlacesReceived value)? placesReceived,
+  }) {
+    return placesReceived?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_WatchAllStarted value)? watchAllStarted,
+    TResult Function(_WatchUncompleteStarted value)? watchUncompleteStarted,
+    TResult Function(_PlacesReceived value)? placesReceived,
+    required TResult orElse(),
+  }) {
+    if (placesReceived != null) {
+      return placesReceived(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PlacesReceived implements PlaceWatcherEvent {
+  const factory _PlacesReceived(Either<PlaceFailure, Place> failureOrPlaces) =
+      _$_PlacesReceived;
+
+  Either<PlaceFailure, Place> get failureOrPlaces;
+  @JsonKey(ignore: true)
+  _$PlacesReceivedCopyWith<_PlacesReceived> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

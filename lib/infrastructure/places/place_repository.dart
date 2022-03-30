@@ -68,9 +68,8 @@ class PlaceRepository implements IPlaceRepository {
   }
 
   @override
-  Stream<Either<PlaceFailure, Place>> watchAll() {
-    // TODO: implement watchAll
-    throw UnimplementedError();
+  Stream<Either<PlaceFailure, Place>> watchAll() async* {
+    final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('users').snapshots();
   }
 
   @override

@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:sample_app/application/auth/auth_bloc.dart';
 import 'package:sample_app/application/auth/sign_in_form/sign_in_form_bloc.dart';
-import 'package:sample_app/presentation/pages/places/places_list_page.dart';
+import 'package:sample_app/presentation/pages/places/place_list_overview/places_list_page.dart';
 
 enum AuthMode { signUp, login }
 

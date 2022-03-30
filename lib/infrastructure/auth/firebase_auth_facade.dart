@@ -20,34 +20,33 @@ class FirebaseAuthFacade implements IAuthFacade {
   // User? currentUser = FirebaseAuth?.instance.currentUser;
 // var currUser = FirebaseAuth.instance.currentUser;
 
-  FirebaseAuthFacade(this._firebaseAuth, this._googleSignIn, this._firebaseUserMapper);
+  FirebaseAuthFacade(
+      this._firebaseAuth, this._googleSignIn, this._firebaseUserMapper);
 
   //  @override
   // Future<Option<Userz>> getSignedInUser() async => _firebaseAuth!.currentUser!.then((u) => optionOf(_firebaseUserMapper.toDomain(u)));
-
-
 
   @override
   getSignedInUser() {
     if (_firebaseAuth.currentUser != null) {
       final user = _firebaseAuth.currentUser;
+      // print(user?.uid);
       return some(Userz(id: UniqueId?.formUniqueString(user!.uid)));
     }
   }
 
-  //   @override
-  // Future<Option<User>> getSignedInUser() async => _firebaseAuth
-  //     .currentUser()
-  //     .then((u) => optionOf(_firebaseUserMapper.toDomain(u)));
-
+  // @override
+  // Future<Option<Userz>>? getSignedInUser() => _firebaseAuth.currentUser != null
+  //     ? (u) => optionOf(_firebaseUserMapper.toDomain(u)) :  ;
+      
 
   @override
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
     required EmailAddress emailAddress,
     required Password password,
   }) async {
-    final emailAddressStr = emailAddress.getOrCrash();
-    final passwordStr = password.getOrCrash();
+    final emailAddressStr = emailAddress.value.getOrElse(() => 'INVALID EMAIL');
+    final passwordStr = password.value.getOrElse(() => 'INVALID PASSWORD');
     // _firebaseAuth.currentUser().then((value) => value.uid);
     // invalid email and weak password are handled before in login page
     try {
@@ -57,7 +56,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       );
       return right(unit);
     } on PlatformException catch (e) {
-      if (e.code == 'email-already-in-use') {
+      if (e.code == 'ERROR_EMAIL_ALREADY_IN_USE') {
         return left(const AuthFailure.emailAlreadyInUse());
       } else {
         return left(const AuthFailure.serverError());
@@ -70,7 +69,8 @@ class FirebaseAuthFacade implements IAuthFacade {
     required EmailAddress emailAddress,
     required Password password,
   }) async {
-    print(_firebaseAuth.currentUser);
+    // print(_firebaseAuth.currentUser);
+    // print(_firebaseAuth.currentUser?.email);
     final emailAddressStr = emailAddress.getOrCrash();
     final passwordStr = password.getOrCrash();
     // invalid email and weak password are handled before in login page
@@ -81,7 +81,8 @@ class FirebaseAuthFacade implements IAuthFacade {
       );
       return right(unit);
     } on PlatformException catch (e) {
-      if (e.code == 'wrong-password' || e.code == 'user-not-found') {
+      if (e.code == 'ERROR_WRONG_PASSWORD' ||
+          e.code == 'ERROR_USER_NOT_FOUND') {
         return left(const AuthFailure.invalidEmailAndPasswordCombination());
       } else {
         return left(const AuthFailure.serverError());

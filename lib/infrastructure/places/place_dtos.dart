@@ -1,14 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:sample_app/domain/core/values_objects.dart';
 import 'package:sample_app/domain/place/place.dart';
+import 'package:sample_app/domain/place/value_objects.dart';
 
 part 'place_dtos.freezed.dart';
 part 'place_dtos.g.dart';
 
 @freezed
 @JsonSerializable()
-abstract class PlaceDTO with _$PlaceDTO {
+class PlaceDTO with _$PlaceDTO {
   const PlaceDTO._();
 
   const factory PlaceDTO({
@@ -34,4 +36,21 @@ abstract class PlaceDTO with _$PlaceDTO {
 
   factory PlaceDTO.fromJson(Map<String, dynamic> json) =>
       _$PlaceDTOFromJson(json);
+
+
+  factory PlaceDTO.fromFirestore(DocumentSnapshot<Map<String, dynamic>> doc) {
+    return PlaceDTO.fromJson(doc.data()!).copyWith(id: doc.id);
+}
+
+}
+extension PlaceDTOX on PlaceDTO {
+  Place toDomain() {
+    return Place(
+      id: UniqueId.formUniqueString(id),
+      title: PlaceTitle(title),
+      image: PlaceImage(image),
+      latitude: PlaceLatitude(latitude),
+      longitude: PlaceLongitude(longitude),
+    );
+  }
 }
