@@ -5,9 +5,7 @@ import 'package:sample_app/application/auth/auth_bloc.dart';
 import 'package:sample_app/application/places/place_actor/place_actor_bloc.dart';
 import 'package:sample_app/application/places/place_watcher/place_watcher_bloc.dart';
 import 'package:sample_app/injectable.dart';
-import 'package:sample_app/presentation/pages/places/add_place_page.dart';
-import 'package:sample_app/presentation/pages/places/place_list_overview/widgets/place_list_overviexxw_body.dart';
-import 'package:sample_app/presentation/pages/places/place_list_overview/widgets/place_card_widget.dart';
+import 'package:sample_app/presentation/pages/places/add_place_overview/place_form_page.dart';
 import 'package:sample_app/presentation/pages/places/place_list_overview/widgets/place_list_overview_body.dart';
 import 'package:sample_app/presentation/pages/sign_in/sign_in_page.dart';
 
@@ -63,7 +61,7 @@ class PlacesListPage extends StatelessWidget {
         ],
         child: Scaffold(
           appBar: AppBar(
-            title: const Text('Your Places'),
+            title: const Text('Favorite Places To visit '),
             leading: IconButton(
               onPressed: () {
                 context.read<AuthBloc>().add(const AuthEvent.signedOut());
@@ -73,7 +71,7 @@ class PlacesListPage extends StatelessWidget {
             actions: [
               IconButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed(AddPlacePage.routeName);
+                  Navigator.of(context).pushNamed(PlaceFormPage.routeName);
                 },
                 icon: const Icon(Icons.add),
               ),
