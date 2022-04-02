@@ -23,7 +23,7 @@ class _PlaceCardWidgetState extends State<PlaceCardWidget> {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Text("Loading");
+          return const CircularProgressIndicator();
         }
 
         return ListView(
