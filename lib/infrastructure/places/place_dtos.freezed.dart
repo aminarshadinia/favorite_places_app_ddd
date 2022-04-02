@@ -169,14 +169,13 @@ class __$PlaceDTOCopyWithImpl<$Res> extends _$PlaceDTOCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_PlaceDTO extends _PlaceDTO {
+class _$_PlaceDTO implements _PlaceDTO {
   const _$_PlaceDTO(
       {required this.id,
       required this.title,
       required this.latitude,
       required this.longitude,
-      required this.image})
-      : super._();
+      required this.image});
 
   factory _$_PlaceDTO.fromJson(Map<String, dynamic> json) =>
       _$$_PlaceDTOFromJson(json);
@@ -227,16 +226,21 @@ class _$_PlaceDTO extends _PlaceDTO {
   Map<String, dynamic> toJson() {
     return _$$_PlaceDTOToJson(this);
   }
+
+  @override
+  doc(String id) {
+    // TODO: implement doc
+    throw UnimplementedError();
+  }
 }
 
-abstract class _PlaceDTO extends PlaceDTO {
+abstract class _PlaceDTO implements PlaceDTO {
   const factory _PlaceDTO(
       {required String id,
       required String title,
       required double latitude,
       required double longitude,
       required String image}) = _$_PlaceDTO;
-  const _PlaceDTO._() : super._();
 
   factory _PlaceDTO.fromJson(Map<String, dynamic> json) = _$_PlaceDTO.fromJson;
 
