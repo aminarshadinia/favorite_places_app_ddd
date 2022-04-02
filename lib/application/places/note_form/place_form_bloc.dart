@@ -65,7 +65,6 @@ class PlaceFormBloc extends Bloc<PlaceFormEvent, PlaceFormState> {
           );
         },
         saved: (e) async {
-
           Either<PlaceFailure,Unit>? failureOrSuccess;
           emit(
             state.copyWith(
@@ -85,10 +84,8 @@ class PlaceFormBloc extends Bloc<PlaceFormEvent, PlaceFormState> {
               saveFailureOrSuccessOption: optionOf(failureOrSuccess),
             ),
           );
-
         },
       );
     });
   }
 }
-  
