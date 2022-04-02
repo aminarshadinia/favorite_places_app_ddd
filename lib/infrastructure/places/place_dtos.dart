@@ -11,7 +11,6 @@ part 'place_dtos.g.dart';
 @freezed
 @JsonSerializable()
 class PlaceDTO with _$PlaceDTO {
-  const PlaceDTO._();
 
   const factory PlaceDTO({
     required String id,
