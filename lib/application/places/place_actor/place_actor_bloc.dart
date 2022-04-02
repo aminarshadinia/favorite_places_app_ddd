@@ -19,6 +19,7 @@ class PlaceActorBloc extends Bloc<PlaceActorEvent, PlaceActorState> {
       : super(const PlaceActorState.initial()) {
     on<PlaceActorEvent>((event, emit) {
       event.map(deleted: (e) async {
+        print(e);
         const PlaceActorState.actionInProgress();
         final possibleFailure = await _placeRepository.delete(event.place);
         emit(possibleFailure.fold(
