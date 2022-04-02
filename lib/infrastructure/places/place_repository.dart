@@ -18,9 +18,14 @@ class PlaceRepository implements IPlaceRepository {
   @override
   Future<Either<PlaceFailure, Unit>> create(Place place) async {
     try {
-      final userDoc = await _firestore.userDocument();
+      final userCollection = _firestore.collection('users');
       final placeDto = PlaceDTO.fromDomain(place);
-      await userDoc.placeCollection.doc(placeDto.id).set(placeDto.toJson());
+      await userCollection.add(placeDto.toJson());
+      // final userDoc = await _firestore.userDocument();
+      // final placeDto = PlaceDTO.fromDomain(place);
+      // await userDoc.set(placeDto.toJson(),  SetOptions(merge: true) );
+      // await userDoc.placeCollection.doc(placeDto.id).set(placeDto.toJson());
+      
       return right(unit);
     } on PlatformException catch (e) {
       if (e.message!.contains('PERMISSION_DENIED')) {
