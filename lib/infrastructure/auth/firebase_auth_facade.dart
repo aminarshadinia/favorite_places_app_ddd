@@ -16,12 +16,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
-  final FirebaseUserMapper _firebaseUserMapper;
   // User? currentUser = FirebaseAuth?.instance.currentUser;
 // var currUser = FirebaseAuth.instance.currentUser;
 
   FirebaseAuthFacade(
-      this._firebaseAuth, this._googleSignIn, this._firebaseUserMapper);
+      this._firebaseAuth, this._googleSignIn);
 
   //  @override
   // Future<Option<Userz>> getSignedInUser() async => _firebaseAuth!.currentUser!.then((u) => optionOf(_firebaseUserMapper.toDomain(u)));
