@@ -18,14 +18,14 @@ class PlaceRepository implements IPlaceRepository {
   @override
   Future<Either<PlaceFailure, Unit>> create(Place place) async {
     try {
-      final userCollection = _firestore.collection('users');
-      final placeDto = PlaceDTO.fromDomain(place);
-      await userCollection.add(placeDto.toJson());
-      // final userDoc = await _firestore.userDocument();
+      // final userCollection = _firestore.collection('users');
       // final placeDto = PlaceDTO.fromDomain(place);
+      // await userCollection.add(placeDto.toJson());
+      final userDoc = await _firestore.userDocument();
+      final placeDto = PlaceDTO.fromDomain(place);
       // await userDoc.set(placeDto.toJson(),  SetOptions(merge: true) );
-      // await userDoc.placeCollection.doc(placeDto.id).set(placeDto.toJson());
-      
+      await userDoc.placeCollection.doc(placeDto.id).set(placeDto.toJson());
+
       return right(unit);
     } on PlatformException catch (e) {
       if (e.message!.contains('PERMISSION_DENIED')) {
@@ -55,11 +55,19 @@ class PlaceRepository implements IPlaceRepository {
   }
 
   @override
-  Future<Either<PlaceFailure, Unit>> delete(Place place) async {
+  Future<Either<PlaceFailure, Unit>> delete(Map<String, dynamic> place) async {
     try {
-      final userDoc = await _firestore.userDocument();
-      final placeId = place.id.getOrCrash();
-      await userDoc.placeCollection.doc(placeId).delete();
+      // DocumentReference productIdRef = rootRef.collection("products").document(shoppingListId)
+      //       .collection("shoppingListProducts").document(productId)
+      final userDoc = FirebaseFirestore.instance.collection('users');
+      // print(userDoc);
+      // final userDoc = await _firestore.userDocument();
+      // final placeId = place.id.getOrCrash();
+      final placeId = place['id'];
+      await userDoc.doc(placeId).delete();
+      // await userDoc.placeCollection.doc(placeId).delete();
+      // final collection = FirebaseFirestore.instance.collection('users');
+      // collection.doc('some_id').delete();
       return right(unit);
     } on PlatformException catch (e) {
       if (e.message!.contains('PERMISSION_DENIED')) {
@@ -74,7 +82,13 @@ class PlaceRepository implements IPlaceRepository {
 
   @override
   Stream<Either<PlaceFailure, Place>> watchAll() async* {
-    final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('users').snapshots();
+    // final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('users').snapshots();
+    final userDoc = await _firestore.userDocument();
+    userDoc.placeCollection.snapshots().map(
+          (snapshot) => right(
+            snapshot.docs.map((doc) => doc),
+          ),
+        );
   }
 
   @override
