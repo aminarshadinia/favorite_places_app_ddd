@@ -8,6 +8,7 @@ import 'package:sample_app/application/places/note_form/place_form_bloc.dart';
 import 'package:sample_app/domain/place/place.dart';
 import 'package:sample_app/injectable.dart';
 import 'package:sample_app/presentation/pages/places/add_place_overview/widgets/place_form_fields_widget.dart';
+import 'package:sample_app/presentation/pages/places/place_list_overview/places_list_page.dart';
 
 class PlaceFormPage extends StatelessWidget {
   static const routeName = '/add-place';
@@ -33,20 +34,32 @@ class PlaceFormPage extends StatelessWidget {
             preState.saveFailureOrSuccessOption !=
             currentState.saveFailureOrSuccessOption,
         listener: (context, state) {
-          state.saveFailureOrSuccessOption.fold(() {}, (either) {
-            either.fold((failure) {
-              FlushbarHelper.createError(
-                message: failure.map(
-                  unexpected: (_) => 'Unexpected Error',
-                  insufficientPermissions: (_) => 'Insufficient Permissions',
-                  unableToUpdate: (_) => 'Place Update was Failed',
-                ),
-              ).show(context);
-            }, (r) {
-              // if the is no feailure but instead we get a Unit from the either
-              Navigator.of(context).pop();
-            });
-          });
+          state.saveFailureOrSuccessOption.fold(
+            () {},
+            (either) {
+              either.fold(
+                (failure) {
+                  FlushbarHelper.createError(
+                    duration: const Duration(seconds: 5),
+                    message: failure.map(
+                      unexpected: (_) => 'Unexpected Error',
+                      insufficientPermissions: (_) =>
+                          'Insufficient Permissions',
+                      unableToUpdate: (_) => 'Place Update was Failed',
+                    ),
+                  ).show(context);
+                },
+                (_) {
+                  // if the is no feailure but instead we get a Unit from the either
+                  // Can't be just a simple pop. If another route (like a Flushbar) is on top of stack, we'll need to pop even that to get to
+                  // the overview page.
+                  Navigator.of(context)
+                      .popUntil(ModalRoute.withName(PlacesListPage.routeName));
+                  Navigator.of(context).pop();
+                },
+              );
+            },
+          );
         },
         // this only rebuild this part of ui when  the prev state is saveing
         buildWhen: (p, c) => p.isSaving != c.isSaving,
