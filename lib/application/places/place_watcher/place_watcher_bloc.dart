@@ -28,9 +28,11 @@ class PlaceWatcherBloc extends Bloc<PlaceWatcherEvent, PlaceWatcherState> {
         await event.map(
           watchAllStarted: (e) async {
             emit(const PlaceWatcherState.loadInProgress());
-            // await _placeStreamSubscription.cancel();
             _placeStreamSubscription = _placeRepository.watchAll().listen(
-                (notes) => add(const PlaceWatcherEvent.watchAllStarted()));
+                  (places) => add(
+                    PlaceWatcherEvent.placesReceived(places),
+                  ),
+                );
           },
           watchUncompleteStarted: (e) async {},
           placesReceived: (e) async {
