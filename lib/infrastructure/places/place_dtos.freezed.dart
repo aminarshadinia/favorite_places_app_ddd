@@ -226,12 +226,6 @@ class _$_PlaceDTO implements _PlaceDTO {
   Map<String, dynamic> toJson() {
     return _$$_PlaceDTOToJson(this);
   }
-
-  @override
-  doc(String id) {
-    // TODO: implement doc
-    throw UnimplementedError();
-  }
 }
 
 abstract class _PlaceDTO implements PlaceDTO {
