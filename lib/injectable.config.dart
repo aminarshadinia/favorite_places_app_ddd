@@ -12,8 +12,8 @@ import 'package:injectable/injectable.dart' as _i2;
 
 import 'application/auth/auth_bloc.dart' as _i15;
 import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i14;
-import 'application/places/note_form/place_form_bloc.dart' as _i12;
 import 'application/places/place_actor/place_actor_bloc.dart' as _i11;
+import 'application/places/place_form/place_form_bloc.dart' as _i12;
 import 'application/places/place_watcher/place_watcher_bloc.dart' as _i13;
 import 'domain/auth/i_auth_facade.dart' as _i6;
 import 'domain/place/i_place_repository.dart' as _i8;

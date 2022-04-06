@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:sample_app/application/places/note_form/place_form_bloc.dart';
+import 'package:sample_app/application/places/place_form/place_form_bloc.dart';
 
 class Map extends StatefulWidget {
   const Map({Key? key}) : super(key: key);

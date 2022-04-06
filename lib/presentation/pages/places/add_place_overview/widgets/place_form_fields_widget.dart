@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sample_app/application/places/note_form/place_form_bloc.dart';
+import 'package:sample_app/application/places/place_form/place_form_bloc.dart';
 import 'package:sample_app/presentation/pages/places/add_place_overview/widgets/location_frame_widget.dart';
 
 class AddPlaceFields extends StatefulWidget {
