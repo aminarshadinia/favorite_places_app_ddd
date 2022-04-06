@@ -18,13 +18,13 @@ class PlaceRepository implements IPlaceRepository {
   @override
   Future<Either<PlaceFailure, Unit>> create(Place place) async {
     try {
-      // final userCollection = _firestore.collection('users');
-      // final placeDto = PlaceDTO.fromDomain(place);
-      // await userCollection.add(placeDto.toJson());
-      final userDoc = await _firestore.userDocument();
+      final userCollection = _firestore.collection('users');
       final placeDto = PlaceDTO.fromDomain(place);
+      await userCollection.add(placeDto.toJson());
+      // final userDoc = await _firestore.userDocument();
+      // final placeDto = PlaceDTO.fromDomain(place);
       // await userDoc.set(placeDto.toJson(),  SetOptions(merge: true) );
-      await userDoc.placeCollection.doc(placeDto.id).set(placeDto.toJson());
+      // await userDoc.placeCollection.doc(placeDto.id).set(placeDto.toJson());
 
       return right(unit);
     } on PlatformException catch (e) {
@@ -55,19 +55,20 @@ class PlaceRepository implements IPlaceRepository {
   }
 
   @override
-  Future<Either<PlaceFailure, Unit>> delete(Map<String, dynamic> place) async {
+  Future<Either<PlaceFailure, Unit>> delete(String placeId) async {
     try {
-      // DocumentReference productIdRef = rootRef.collection("products").document(shoppingListId)
-      //       .collection("shoppingListProducts").document(productId)
-      final userDoc = FirebaseFirestore.instance.collection('users');
-      // print(userDoc);
-      // final userDoc = await _firestore.userDocument();
-      // final placeId = place.id.getOrCrash();
-      final placeId = place['id'];
-      await userDoc.doc(placeId).delete();
-      // await userDoc.placeCollection.doc(placeId).delete();
-      // final collection = FirebaseFirestore.instance.collection('users');
-      // collection.doc('some_id').delete();
+      FirebaseFirestore.instance
+        .collection('users')
+        .where('id', isEqualTo: placeId)
+        .get()
+        .then((value) {
+      return value.docs.forEach((element) {
+        FirebaseFirestore.instance
+            .collection('users')
+            .doc(element.id)
+            .delete();
+      });
+    });
       return right(unit);
     } on PlatformException catch (e) {
       if (e.message!.contains('PERMISSION_DENIED')) {
