@@ -9,5 +9,5 @@ abstract class IPlaceRepository {
   Stream<Either<PlaceFailure, Place>> watchUncompleted();
   Future<Either<PlaceFailure , Unit>> create(Place place);  
   Future<Either<PlaceFailure , Unit>> update(Place place);  
-  Future<Either<PlaceFailure , Unit>> delete(Place place);  
+  Future<Either<PlaceFailure , Unit>> delete(String placeId);  
 }
