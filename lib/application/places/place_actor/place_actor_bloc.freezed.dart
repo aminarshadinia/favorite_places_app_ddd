@@ -18,9 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$PlaceActorEventTearOff {
   const _$PlaceActorEventTearOff();
 
-  _Deleted deleted(Place place) {
+  _Deleted deleted(String placeId) {
     return _Deleted(
-      place,
+      placeId,
     );
   }
 }
@@ -30,21 +30,21 @@ const $PlaceActorEvent = _$PlaceActorEventTearOff();
 
 /// @nodoc
 mixin _$PlaceActorEvent {
-  Place get place => throw _privateConstructorUsedError;
+  String get placeId => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Place place) deleted,
+    required TResult Function(String placeId) deleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Place place)? deleted,
+    TResult Function(String placeId)? deleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Place place)? deleted,
+    TResult Function(String placeId)? deleted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -75,9 +75,7 @@ abstract class $PlaceActorEventCopyWith<$Res> {
   factory $PlaceActorEventCopyWith(
           PlaceActorEvent value, $Res Function(PlaceActorEvent) then) =
       _$PlaceActorEventCopyWithImpl<$Res>;
-  $Res call({Place place});
-
-  $PlaceCopyWith<$Res> get place;
+  $Res call({String placeId});
 }
 
 /// @nodoc
@@ -91,21 +89,14 @@ class _$PlaceActorEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? place = freezed,
+    Object? placeId = freezed,
   }) {
     return _then(_value.copyWith(
-      place: place == freezed
-          ? _value.place
-          : place // ignore: cast_nullable_to_non_nullable
-              as Place,
+      placeId: placeId == freezed
+          ? _value.placeId
+          : placeId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
-  }
-
-  @override
-  $PlaceCopyWith<$Res> get place {
-    return $PlaceCopyWith<$Res>(_value.place, (value) {
-      return _then(_value.copyWith(place: value));
-    });
   }
 }
 
@@ -115,10 +106,7 @@ abstract class _$DeletedCopyWith<$Res>
   factory _$DeletedCopyWith(_Deleted value, $Res Function(_Deleted) then) =
       __$DeletedCopyWithImpl<$Res>;
   @override
-  $Res call({Place place});
-
-  @override
-  $PlaceCopyWith<$Res> get place;
+  $Res call({String placeId});
 }
 
 /// @nodoc
@@ -132,13 +120,13 @@ class __$DeletedCopyWithImpl<$Res> extends _$PlaceActorEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? place = freezed,
+    Object? placeId = freezed,
   }) {
     return _then(_Deleted(
-      place == freezed
-          ? _value.place
-          : place // ignore: cast_nullable_to_non_nullable
-              as Place,
+      placeId == freezed
+          ? _value.placeId
+          : placeId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -146,14 +134,14 @@ class __$DeletedCopyWithImpl<$Res> extends _$PlaceActorEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Deleted implements _Deleted {
-  const _$_Deleted(this.place);
+  const _$_Deleted(this.placeId);
 
   @override
-  final Place place;
+  final String placeId;
 
   @override
   String toString() {
-    return 'PlaceActorEvent.deleted(place: $place)';
+    return 'PlaceActorEvent.deleted(placeId: $placeId)';
   }
 
   @override
@@ -161,12 +149,12 @@ class _$_Deleted implements _Deleted {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Deleted &&
-            const DeepCollectionEquality().equals(other.place, place));
+            const DeepCollectionEquality().equals(other.placeId, placeId));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(place));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(placeId));
 
   @JsonKey(ignore: true)
   @override
@@ -176,27 +164,27 @@ class _$_Deleted implements _Deleted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Place place) deleted,
+    required TResult Function(String placeId) deleted,
   }) {
-    return deleted(place);
+    return deleted(placeId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Place place)? deleted,
+    TResult Function(String placeId)? deleted,
   }) {
-    return deleted?.call(place);
+    return deleted?.call(placeId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Place place)? deleted,
+    TResult Function(String placeId)? deleted,
     required TResult orElse(),
   }) {
     if (deleted != null) {
-      return deleted(place);
+      return deleted(placeId);
     }
     return orElse();
   }
@@ -231,10 +219,10 @@ class _$_Deleted implements _Deleted {
 }
 
 abstract class _Deleted implements PlaceActorEvent {
-  const factory _Deleted(Place place) = _$_Deleted;
+  const factory _Deleted(String placeId) = _$_Deleted;
 
   @override
-  Place get place;
+  String get placeId;
   @override
   @JsonKey(ignore: true)
   _$DeletedCopyWith<_Deleted> get copyWith =>
