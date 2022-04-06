@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sample_app/application/places/note_form/place_form_bloc.dart';
-import 'package:sample_app/presentation/pages/places/add_place_overview/widgets/location_input.dart';
+import 'package:sample_app/presentation/pages/places/add_place_overview/widgets/location_frame_widget.dart';
 
 class AddPlaceFields extends StatefulWidget {
-  // static const routeName = '/add-place';
+  
   const AddPlaceFields({Key? key}) : super(key: key);
 
   @override
@@ -12,6 +12,14 @@ class AddPlaceFields extends StatefulWidget {
 }
 
 class _AddPlaceFieldsState extends State<AddPlaceFields> {
+  final _imageUrlController = TextEditingController();
+
+  @override
+  void dispose() {
+    _imageUrlController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PlaceFormBloc, PlaceFormState>(
@@ -54,7 +62,16 @@ class _AddPlaceFieldsState extends State<AddPlaceFields> {
                           border: Border.all(width: 1, color: Colors.grey),
                           borderRadius:
                               const BorderRadius.all(Radius.circular(10))),
-                      child: const Text('Enter a URL'),
+                      child: _imageUrlController.text.isEmpty
+                          ? const Center(
+                              child: Text('Enter a URL'),
+                            )
+                          : FittedBox(
+                              child: Image.network(
+                                _imageUrlController.text,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                     ),
                     Expanded(
                       child: TextFormField(
@@ -63,29 +80,31 @@ class _AddPlaceFieldsState extends State<AddPlaceFields> {
                           hintText: 'https:// ... .png|jpg|jpeg',
                         ),
                         keyboardType: TextInputType.url,
+                        controller: _imageUrlController,
                         onChanged: (value) => context.read<PlaceFormBloc>().add(
-                        PlaceFormEvent.imageChanged(value),
-                      ),
-                  validator: (_) => context
-                      .read<PlaceFormBloc>()
-                      .state
-                      .place
-                      .image
-                      .value
-                      .fold(
-                        (f) => f.maybeMap(
-                          // we use maybeMap and orElse cuz we only care about a specific failure in each input
-                          imageFormat: (_) => 'Use a valid format of URL: png-jpg-jpeg',
-                          orElse: () => null,
-                        ),
-                        (_) => null,
-                      ),
+                              PlaceFormEvent.imageChanged(value),
+                            ),
+                        validator: (_) => context
+                            .read<PlaceFormBloc>()
+                            .state
+                            .place
+                            .image
+                            .value
+                            .fold(
+                              (f) => f.maybeMap(
+                                // we use maybeMap and orElse cuz we only care about a specific failure in each input
+                                imageFormat: (_) =>
+                                    'Use a valid format of URL: png-jpg-jpeg',
+                                orElse: () => null,
+                              ),
+                              (_) => null,
+                            ),
                       ),
                     ),
                   ],
                 ),
                 const SizedBox(height: 20),
-                const LocationInput()
+                const LocationFrame()
               ],
             ),
           ),
