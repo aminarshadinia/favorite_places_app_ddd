@@ -35,7 +35,7 @@ class PlaceDetals extends StatelessWidget {
           // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             const SizedBox(
-              height: 15.0,
+              height: 25.0,
             ),
             const Center(
                 child: Text('Place Details..',
@@ -64,14 +64,21 @@ class PlaceDetals extends StatelessWidget {
               Expanded(
                 child: SizedBox(
                   height: 300,
-                  child: GoogleMap(
-                    myLocationButtonEnabled: false,
-                    // zoomControlsEnabled: false,
-                    initialCameraPosition: initialCameraPosition,
-                    markers: {
-                      if (marker != null) marker,
-                    },
-                  ),
+                  child: LatLng(latitude, longitude) == const LatLng(0.0, 0.0)
+                      ? const Center(
+                          child: Text(
+                            'You haven\'t selected a location on map.',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        )
+                      : GoogleMap(
+                          myLocationButtonEnabled: false,
+                          // zoomControlsEnabled: false,
+                          initialCameraPosition: initialCameraPosition,
+                          markers: {
+                            if (marker != null) marker,
+                          },
+                        ),
                 ),
               ),
             ]),
