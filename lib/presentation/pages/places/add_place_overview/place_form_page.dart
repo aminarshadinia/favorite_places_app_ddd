@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sample_app/application/places/note_form/place_form_bloc.dart';
+import 'package:sample_app/application/places/place_form/place_form_bloc.dart';
 
 import 'package:sample_app/domain/place/place.dart';
 import 'package:sample_app/injectable.dart';
@@ -53,9 +53,9 @@ class PlaceFormPage extends StatelessWidget {
                   // if the is no feailure but instead we get a Unit from the either
                   // Can't be just a simple pop. If another route (like a Flushbar) is on top of stack, we'll need to pop even that to get to
                   // the overview page.
-                  Navigator.of(context)
-                      .popUntil(ModalRoute.withName(PlacesListPage.routeName));
-                  Navigator.of(context).pop();
+                  // Navigator.of(context)
+                  //     .popUntil(ModalRoute.withName(PlacesListPage.routeName));
+                  Navigator.of(context).pushNamed(PlacesListPage.routeName);
                 },
               );
             },
@@ -88,7 +88,7 @@ class SavingInProgressOveylay extends StatelessWidget {
       ignoring: !isSaving,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 150),
-        color: isSaving ? Colors.black.withOpacity(0.8) : Colors.transparent,
+        color: isSaving ? Colors.black.withOpacity(0.9) : Colors.transparent,
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Visibility(
@@ -122,11 +122,7 @@ class PlaceFormPageScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: BlocBuilder<PlaceFormBloc, PlaceFormState>(
-            buildWhen: (p, c) => p.isEditing != c.isEditing,
-            builder: (context, state) =>
-                Text(state.isEditing ? 'Edit a note' : 'Create a note'),
-          ),
+          title: const Text('Add a place'),
           actions: <Widget>[
             Builder(
               builder: (context) {
@@ -149,9 +145,7 @@ class PlaceFormPageScaffold extends StatelessWidget {
                 autovalidate: state.showErrorMessages,
                 child: SingleChildScrollView(
                   child: Column(
-                    children: const [
-                      AddPlaceFields()
-                    ],
+                    children: const [AddPlaceFields()],
                   ),
                 ));
           },

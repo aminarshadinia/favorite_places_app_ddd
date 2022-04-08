@@ -27,8 +27,8 @@ class PlaceRepository implements IPlaceRepository {
       // await userDoc.placeCollection.doc(placeDto.id).set(placeDto.toJson());
 
       return right(unit);
-    } on PlatformException catch (e) {
-      if (e.message!.contains('PERMISSION_DENIED')) {
+    } on FirebaseException catch (e) {
+      if (e.message!.contains('permission-denied')) {
         return left(const PlaceFailure.insufficientPermissions());
       } else {
         return left(const PlaceFailure.unexpected());
@@ -43,10 +43,10 @@ class PlaceRepository implements IPlaceRepository {
       final placeDto = PlaceDTO.fromDomain(place);
       await userDoc.placeCollection.doc(placeDto.id).update(placeDto.toJson());
       return right(unit);
-    } on PlatformException catch (e) {
-      if (e.message!.contains('PERMISSION_DENIED')) {
+    } on FirebaseException catch (e) {
+      if (e.message!.contains('permission-denied')) {
         return left(const PlaceFailure.insufficientPermissions());
-      } else if (e.message!.contains('NOT_FOUND')) {
+      } else if (e.message!.contains('not-found')) {
         return left(const PlaceFailure.unableToUpdate());
       } else {
         return left(const PlaceFailure.unexpected());
@@ -70,10 +70,10 @@ class PlaceRepository implements IPlaceRepository {
       });
     });
       return right(unit);
-    } on PlatformException catch (e) {
-      if (e.message!.contains('PERMISSION_DENIED')) {
+    } on FirebaseException catch (e) {
+      if (e.message!.contains('permission-denied')) {
         return left(const PlaceFailure.insufficientPermissions());
-      } else if (e.message!.contains('NOT_FOUND')) {
+      } else if (e.message!.contains('not-found')) {
         return left(const PlaceFailure.unableToUpdate());
       } else {
         return left(const PlaceFailure.unexpected());
