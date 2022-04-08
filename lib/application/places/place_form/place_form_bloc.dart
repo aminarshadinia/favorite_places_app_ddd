@@ -19,7 +19,7 @@ class PlaceFormBloc extends Bloc<PlaceFormEvent, PlaceFormState> {
       : super(PlaceFormState.initial());
 
   PlaceFormBloc(this._placeRepository) : super(PlaceFormState.initial()) {
-    on<PlaceFormEvent>((event, emit) {
+    on<PlaceFormEvent>((event, emit) async {
       event.map(
         initialized: (e) async {
           emit(e.initialPlaceOption.fold(

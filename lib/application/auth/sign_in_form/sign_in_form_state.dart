@@ -10,6 +10,7 @@ abstract class SignInFormState with _$SignInFormState {
     required bool isSubmitting,
     required Option<Either<AuthFailure , Unit>> authFailureOrSuccessOption,
     // instead of returning null we type "Option"
+    // if the response on the server is None then this means that no signin has happened yet.
   }) = _SignInFormState;
 
   factory SignInFormState.initial() => SignInFormState(
