@@ -22,6 +22,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
     on<SignInFormEvent>((event, emit) async {
       
        await event.map(
+
         emailChanged: (e) async {
           // we copy the already existing states with some newly change values in line below
           emit(state.copyWith(
@@ -37,11 +38,11 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
             authFailureOrSuccessOption: none(),
           ));
         },
+
         registerWithEmailAndPasswordPressed: (e) async {
           final isEmailValid = state.emailAddress.isValid();
           final isPasswordValid = state.password.isValid();
           Either<AuthFailure, Unit>? failureOrSuccess;
-
           if (isEmailValid && isPasswordValid) {
             emit(
               state.copyWith(
@@ -60,11 +61,11 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
             ),
           );
         },
+
         signInWithEmailAndPasswordPressed: (e) async {
           final isEmailValid = state.emailAddress.isValid();
           final isPasswordValid = state.password.isValid();
           Either<AuthFailure, Unit>? failureOrSuccess;
-
           if (isEmailValid && isPasswordValid) {
             emit(
               state.copyWith(
@@ -83,6 +84,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
             ),
           );
         },
+
         signInWithGooglePressed: (e) async {
           emit(state.copyWith(
             isSubmitting: true,
@@ -91,7 +93,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
           final failureOrSuccess = await _authFacade.signInWithGoogle();
           emit(state.copyWith(
             isSubmitting: false,
-            //code below will hold a response value from server which contains failute or succes
+            //code below will hold a response value from server which contains failute or success
             authFailureOrSuccessOption: some(failureOrSuccess),
           ));
         },

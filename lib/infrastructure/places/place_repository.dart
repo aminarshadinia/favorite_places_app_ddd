@@ -1,7 +1,4 @@
-import 'dart:io';
-
 import 'package:dartz/dartz.dart';
-import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sample_app/domain/place/i_place_repository.dart';
 import 'package:sample_app/domain/place/place_failure.dart';
@@ -9,6 +6,10 @@ import 'package:sample_app/domain/place/place.dart';
 import 'package:sample_app/infrastructure/core/firestore_helpers.dart';
 import 'package:sample_app/infrastructure/places/place_dtos.dart';
 
+/*
+ * whenever we request an IPlaceRepository using the injectable package we are goin to reveive
+ * our _placeRepository from Place_stream_bloc which is its implementation
+ */
 @LazySingleton(as: IPlaceRepository)
 class PlaceRepository implements IPlaceRepository {
   final FirebaseFirestore _firestore;
@@ -18,17 +19,17 @@ class PlaceRepository implements IPlaceRepository {
   @override
   Future<Either<PlaceFailure, Unit>> create(Place place) async {
     try {
-      // final userCollection = _firestore.collection('users');
-      // final placeDto = PlaceDTO.fromDomain(place);
-      // await userCollection.add(placeDto.toJson());
-      final userDoc = await _firestore.userDocument();
+      final userCollection = _firestore.collection('users');
       final placeDto = PlaceDTO.fromDomain(place);
+      await userCollection.add(placeDto.toJson());
+      // final userDoc = await _firestore.userDocument();
+      // final placeDto = PlaceDTO.fromDomain(place);
       // await userDoc.set(placeDto.toJson(),  SetOptions(merge: true) );
-      await userDoc.placeCollection.doc(placeDto.id).set(placeDto.toJson());
+      // await userDoc.placeCollection.doc(placeDto.id).set(placeDto.toJson());
 
       return right(unit);
-    } on PlatformException catch (e) {
-      if (e.message!.contains('PERMISSION_DENIED')) {
+    } on FirebaseException catch (e) {
+      if (e.message!.contains('permission-denied')) {
         return left(const PlaceFailure.insufficientPermissions());
       } else {
         return left(const PlaceFailure.unexpected());
@@ -43,10 +44,10 @@ class PlaceRepository implements IPlaceRepository {
       final placeDto = PlaceDTO.fromDomain(place);
       await userDoc.placeCollection.doc(placeDto.id).update(placeDto.toJson());
       return right(unit);
-    } on PlatformException catch (e) {
-      if (e.message!.contains('PERMISSION_DENIED')) {
+    } on FirebaseException catch (e) {
+      if (e.message!.contains('permission-denied')) {
         return left(const PlaceFailure.insufficientPermissions());
-      } else if (e.message!.contains('NOT_FOUND')) {
+      } else if (e.message!.contains('not-found')) {
         return left(const PlaceFailure.unableToUpdate());
       } else {
         return left(const PlaceFailure.unexpected());
@@ -55,24 +56,25 @@ class PlaceRepository implements IPlaceRepository {
   }
 
   @override
-  Future<Either<PlaceFailure, Unit>> delete(Map<String, dynamic> place) async {
+  Future<Either<PlaceFailure, Unit>> delete(String placeId) async {
     try {
-      // DocumentReference productIdRef = rootRef.collection("products").document(shoppingListId)
-      //       .collection("shoppingListProducts").document(productId)
-      final userDoc = FirebaseFirestore.instance.collection('users');
-      // print(userDoc);
-      // final userDoc = await _firestore.userDocument();
-      // final placeId = place.id.getOrCrash();
-      final placeId = place['id'];
-      await userDoc.doc(placeId).delete();
-      // await userDoc.placeCollection.doc(placeId).delete();
-      // final collection = FirebaseFirestore.instance.collection('users');
-      // collection.doc('some_id').delete();
+      FirebaseFirestore.instance
+          .collection('users')
+          .where('id', isEqualTo: placeId)
+          .get()
+          .then((value) {
+        return value.docs.forEach((element) {
+          FirebaseFirestore.instance
+              .collection('users')
+              .doc(element.id)
+              .delete();
+        });
+      });
       return right(unit);
-    } on PlatformException catch (e) {
-      if (e.message!.contains('PERMISSION_DENIED')) {
+    } on FirebaseException catch (e) {
+      if (e.message!.contains('permission-denied')) {
         return left(const PlaceFailure.insufficientPermissions());
-      } else if (e.message!.contains('NOT_FOUND')) {
+      } else if (e.message!.contains('not-found')) {
         return left(const PlaceFailure.unableToUpdate());
       } else {
         return left(const PlaceFailure.unexpected());
@@ -80,20 +82,10 @@ class PlaceRepository implements IPlaceRepository {
     }
   }
 
-  @override
-  Stream<Either<PlaceFailure, Place>> watchAll() async* {
-    // final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('users').snapshots();
-    final userDoc = await _firestore.userDocument();
-    userDoc.placeCollection.snapshots().map(
-          (snapshot) => right(
-            snapshot.docs.map((doc) => doc),
-          ),
-        );
-  }
-
-  @override
-  Stream<Either<PlaceFailure, Place>> watchUncompleted() {
-    // TODO: implement watchUncompleted
-    throw UnimplementedError();
-  }
+  // @override
+  // Stream<Either<PlaceFailure, Place>> streamAll() async* {
+  //   FirebaseFirestore.instance.collection('users').snapshots().map((snapshot) {
+  //     return snapshot.docs.map((doc) => PlaceDTO.fromFirestore(doc)).toList();
+  //   });
+  // }
 }

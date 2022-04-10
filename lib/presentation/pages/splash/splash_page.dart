@@ -11,7 +11,7 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /*BlocListener is usefull for doing things which basically cannoy happen during BUILD
+    /*BlocListener is usefull for doing things which basically cannot happen during BUILD
     so sth like Navigation cant happen during build and thats why we use bloc listener
      which Runs After the build has finished */
     return BlocListener<AuthBloc, AuthState>(

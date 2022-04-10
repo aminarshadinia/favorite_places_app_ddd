@@ -19,14 +19,14 @@ class PlaceFormBloc extends Bloc<PlaceFormEvent, PlaceFormState> {
       : super(PlaceFormState.initial());
 
   PlaceFormBloc(this._placeRepository) : super(PlaceFormState.initial()) {
-    on<PlaceFormEvent>((event, emit) {
-      event.map(
+    on<PlaceFormEvent>((event, emit) async {
+      await event.map(
         initialized: (e) async {
           emit(e.initialPlaceOption.fold(
             () => state,
             (initialPlace) => state.copyWith(
               place: initialPlace,
-              isEditing: false,
+              // isEditing: false,
             ),
           ));
         },
@@ -72,10 +72,13 @@ class PlaceFormBloc extends Bloc<PlaceFormEvent, PlaceFormState> {
               saveFailureOrSuccessOption: none(),
             ),
           );
+          // if (state.place.failureOption.isNone()) {
+          //   failureOrSuccess = state.isEditing
+          //       ? await _placeRepository.update(state.place)
+          //       : await _placeRepository.create(state.place);
+          // }
           if (state.place.failureOption.isNone()) {
-            failureOrSuccess = state.isEditing
-                ? await _placeRepository.update(state.place)
-                : await _placeRepository.create(state.place);
+          failureOrSuccess = await _placeRepository.create(state.place);
           }
           emit(
             state.copyWith(
@@ -83,6 +86,16 @@ class PlaceFormBloc extends Bloc<PlaceFormEvent, PlaceFormState> {
               showErrorMessages: true,
               saveFailureOrSuccessOption: optionOf(failureOrSuccess),
             ),
+
+            // await _placeRepository.create(state.place).whenComplete(
+            //     () => emit(
+            //       state.copyWith(
+            //         isSaving: false,
+            //         showErrorMessages: true,
+            //         saveFailureOrSuccessOption: optionOf(failureOrSuccess),
+            //       ),
+            //     ),
+            //   );
           );
         },
       );

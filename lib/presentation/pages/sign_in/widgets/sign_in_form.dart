@@ -64,8 +64,8 @@ class _SignInFormState extends State<SignInForm> {
             either.fold(
               (failure) {
                 FlushbarHelper.createError(
+                  duration: const Duration(seconds: 5),
                   message: failure.map(
-                    // Use localized strings here in your apps
                     cancelledByUser: (_) => 'Cancelled',
                     serverError: (_) => 'Server error',
                     emailAlreadyInUse: (_) => 'Email already in use',

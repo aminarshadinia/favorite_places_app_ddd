@@ -11,8 +11,10 @@ class PlaceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
+        contentPadding: const EdgeInsets.all(6),
         onTap: () {
           showDialog(
+            barrierColor: Colors.black.withOpacity(0.8),
             context: context,
             builder: (BuildContext context) {
               return PlaceDetals(
@@ -26,15 +28,36 @@ class PlaceCard extends StatelessWidget {
         },
         onLongPress: () {
           final placeActorBloc = context.read<PlaceActorBloc>();
-          // placeActorBloc.add(PlaceActorEvent.deleted(place[placeActorBloc]));
+          showDialog(
+            context: context,
+            builder: (BuildContext context) => AlertDialog(
+              title: const Text('Delete favorite place'),
+              content: Text(
+                  'You are about to delete " ${place['title']} " , are you sure?'),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () => Navigator.pop(context, 'Cancel'),
+                  child: const Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    placeActorBloc.add(PlaceActorEvent.deleted(place['id']));
+                    Navigator.pop(context);
+                  },
+                  child: const Text(
+                    'DELETE',
+                    style: TextStyle(color: Colors.red),
+                  ),
+                ),
+              ],
+            ),
+          );
         },
         leading: SizedBox(
-          height: 50.0,
-          width: 50.0,
+          height: 70.0,
+          width: 70.0,
           child: Image(
             image: NetworkImage(place['image']),
-            height: 50.0,
-            width: 50.0,
           ),
         ),
         trailing: const Icon(Icons.info_outline),
@@ -46,4 +69,3 @@ class PlaceCard extends StatelessWidget {
     );
   }
 }
-

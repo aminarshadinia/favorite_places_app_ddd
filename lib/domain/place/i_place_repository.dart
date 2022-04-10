@@ -5,9 +5,7 @@ import 'package:sample_app/domain/place/place.dart';
 import 'package:sample_app/domain/place/place_failure.dart';
 
 abstract class IPlaceRepository {
-  Stream<Either<PlaceFailure, Place>> watchAll();
-  Stream<Either<PlaceFailure, Place>> watchUncompleted();
   Future<Either<PlaceFailure , Unit>> create(Place place);  
   Future<Either<PlaceFailure , Unit>> update(Place place);  
-  Future<Either<PlaceFailure , Unit>> delete(Place place);  
+  Future<Either<PlaceFailure , Unit>> delete(String placeId);  
 }

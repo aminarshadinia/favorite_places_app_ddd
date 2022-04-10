@@ -17,11 +17,10 @@ class PlaceActorBloc extends Bloc<PlaceActorEvent, PlaceActorState> {
 
   PlaceActorBloc(this._placeRepository)
       : super(const PlaceActorState.initial()) {
-    on<PlaceActorEvent>((event, emit) {
-      event.map(deleted: (e) async {
-        print(e);
-        const PlaceActorState.actionInProgress();
-        final possibleFailure = await _placeRepository.delete(event.place);
+    on<PlaceActorEvent>((event, emit) async {
+      await event.map(deleted: (e) async {
+        emit(const PlaceActorState.actionInProgress());
+        final possibleFailure = await _placeRepository.delete(event.placeId);
         emit(possibleFailure.fold(
           (f) => PlaceActorState.deleteFailure(f),
           (_) => const PlaceActorState.deleteSuccess(),
@@ -30,3 +29,4 @@ class PlaceActorBloc extends Bloc<PlaceActorEvent, PlaceActorState> {
     });
   }
 }
+

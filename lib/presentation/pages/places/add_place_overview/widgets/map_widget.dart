@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:sample_app/application/places/note_form/place_form_bloc.dart';
+import 'package:sample_app/application/places/place_form/place_form_bloc.dart';
 
-class MapScreen extends StatefulWidget {
-  const MapScreen({Key? key}) : super(key: key);
+class Map extends StatefulWidget {
+  const Map({Key? key}) : super(key: key);
 
   @override
-  State<MapScreen> createState() => _MapScreenState();
+  State<Map> createState() => _MapState();
 }
 
-class _MapScreenState extends State<MapScreen> {
+class _MapState extends State<Map> {
   static const _initialCameraPosition = CameraPosition(
-    target: LatLng(37.773972, -122.431297),
-    zoom: 11.5,
+    target: LatLng(13.660397, 100.525939),
+    zoom: 4,
   );
   late GoogleMapController _googleMapController;
   Marker? _origin;
@@ -29,7 +29,6 @@ class _MapScreenState extends State<MapScreen> {
     return Scaffold(
       body: GoogleMap(
         myLocationButtonEnabled: false,
-        // zoomControlsEnabled: false,
         initialCameraPosition: _initialCameraPosition,
         onMapCreated: (controller) => _googleMapController = controller,
         markers: {
@@ -53,17 +52,17 @@ class _MapScreenState extends State<MapScreen> {
     setState(() {
       _origin = Marker(
         markerId: const MarkerId('origin'),
-        infoWindow: const InfoWindow(title: 'Origin'),
-        // icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
-        position: pos,
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+        position: (pos.latitude == 0.0 && pos.longitude == 0.0)
+            ? const LatLng(0.0, 0.0)
+            : pos,
       );
     });
     context.read<PlaceFormBloc>().add(
-     PlaceFormEvent.latitudeChanged(_origin!.position.latitude),
-    );
+          PlaceFormEvent.latitudeChanged(_origin!.position.latitude),
+        );
     context.read<PlaceFormBloc>().add(
-     PlaceFormEvent.longitudeChanged(_origin!.position.longitude),
-    );
-    // print(_origin!.position);
+          PlaceFormEvent.longitudeChanged(_origin!.position.longitude),
+        );
   }
 }
