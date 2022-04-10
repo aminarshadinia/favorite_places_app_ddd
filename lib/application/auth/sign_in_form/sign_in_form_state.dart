@@ -18,7 +18,7 @@ abstract class SignInFormState with _$SignInFormState {
     password: Password(''),
     showErrorMessages: false,
     isSubmitting: false,
-    authFailureOrSuccessOption: none(),
+    authFailureOrSuccessOption: none(),//we set it to none() because there is no resposne yet from the autheticatoin backend
   );
 }
 

@@ -10,15 +10,14 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:google_sign_in/google_sign_in.dart' as _i5;
 import 'package:injectable/injectable.dart' as _i2;
 
-import 'application/auth/auth_bloc.dart' as _i15;
-import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i14;
+import 'application/auth/auth_bloc.dart' as _i14;
+import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i13;
 import 'application/places/place_actor/place_actor_bloc.dart' as _i11;
 import 'application/places/place_form/place_form_bloc.dart' as _i12;
-import 'application/places/place_watcher/place_watcher_bloc.dart' as _i13;
 import 'domain/auth/i_auth_facade.dart' as _i6;
 import 'domain/place/i_place_repository.dart' as _i8;
 import 'infrastructure/auth/firebase_auth_facade.dart' as _i7;
-import 'infrastructure/core/firebase_injectable_module.dart' as _i16;
+import 'infrastructure/core/firebase_injectable_module.dart' as _i15;
 import 'infrastructure/core/firestore_helpers.dart' as _i10;
 import 'infrastructure/places/place_repository.dart'
     as _i9; // ignore_for_file: unnecessary_lambdas
@@ -43,12 +42,10 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i11.PlaceActorBloc(get<_i8.IPlaceRepository>()));
   gh.factory<_i12.PlaceFormBloc>(
       () => _i12.PlaceFormBloc(get<_i8.IPlaceRepository>()));
-  gh.factory<_i13.PlaceWatcherBloc>(
-      () => _i13.PlaceWatcherBloc(get<_i8.IPlaceRepository>()));
-  gh.factory<_i14.SignInFormBloc>(
-      () => _i14.SignInFormBloc(get<_i6.IAuthFacade>()));
-  gh.factory<_i15.AuthBloc>(() => _i15.AuthBloc(get<_i6.IAuthFacade>()));
+  gh.factory<_i13.SignInFormBloc>(
+      () => _i13.SignInFormBloc(get<_i6.IAuthFacade>()));
+  gh.factory<_i14.AuthBloc>(() => _i14.AuthBloc(get<_i6.IAuthFacade>()));
   return get;
 }
 
-class _$FirebaseInjectableModule extends _i16.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i15.FirebaseInjectableModule {}

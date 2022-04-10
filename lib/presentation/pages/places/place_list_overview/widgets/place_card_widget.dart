@@ -1,8 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sample_app/application/places/place_actor/place_actor_bloc.dart';
-import 'package:sample_app/infrastructure/core/firestore_helpers.dart';
 import 'package:sample_app/presentation/pages/places/place_list_overview/widgets/place_details.dart';
 
 class PlaceCard extends StatelessWidget {
@@ -29,7 +27,7 @@ class PlaceCard extends StatelessWidget {
           );
         },
         onLongPress: () {
-        final placeActorBloc = context.read<PlaceActorBloc>();
+          final placeActorBloc = context.read<PlaceActorBloc>();
           showDialog(
             context: context,
             builder: (BuildContext context) => AlertDialog(
@@ -43,11 +41,13 @@ class PlaceCard extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    placeActorBloc
-                        .add(PlaceActorEvent.deleted(place['id']));
+                    placeActorBloc.add(PlaceActorEvent.deleted(place['id']));
                     Navigator.pop(context);
                   },
-                  child: const Text('DELETE',style: TextStyle(color: Colors.red),),
+                  child: const Text(
+                    'DELETE',
+                    style: TextStyle(color: Colors.red),
+                  ),
                 ),
               ],
             ),

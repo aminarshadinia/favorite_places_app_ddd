@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sample_app/application/auth/auth_bloc.dart';
 import 'package:sample_app/application/places/place_actor/place_actor_bloc.dart';
-import 'package:sample_app/application/places/place_watcher/place_watcher_bloc.dart';
 import 'package:sample_app/injectable.dart';
 import 'package:sample_app/presentation/pages/places/add_place_overview/place_form_page.dart';
 import 'package:sample_app/presentation/pages/places/place_list_overview/widgets/place_list_overview_body.dart';
@@ -15,21 +14,8 @@ class PlacesListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        // using getIt isgoin to make sure that all of dependencies are properly injected into the note watcher bloc
-        BlocProvider<PlaceWatcherBloc>(
-          create: (context) => getIt<PlaceWatcherBloc>()
-            ..add(
-              const PlaceWatcherEvent.watchAllStarted(),
-              // we use ..add() cuz by default when the place_list_page is first displayed we are hoin to watch all places
-            ),
-        ),
-        BlocProvider<PlaceActorBloc>(
-          create: (context) => getIt<PlaceActorBloc>(),
-        ),
-        
-      ],
+    return BlocProvider(
+      create: (context) => getIt<PlaceActorBloc>(),
       child: MultiBlocListener(
         listeners: [
           BlocListener<AuthBloc, AuthState>(
@@ -43,6 +29,15 @@ class PlacesListPage extends StatelessWidget {
           BlocListener<PlaceActorBloc, PlaceActorState>(
             listener: (context, state) {
               state.maybeMap(
+                  // actionInProgress: (state) {
+                  //   if(state == true) {
+                  //   const Scaffold(
+                  //     body: Center(
+                  //       child: CircularProgressIndicator(),
+                  //     ),
+                  //   );
+                  //   }
+                  // },
                   deleteFailure: (state) {
                     FlushbarHelper.createError(
                       duration: const Duration(seconds: 5),
@@ -51,9 +46,16 @@ class PlacesListPage extends StatelessWidget {
                             'Unexpected error happened while deleting... please contact support.',
                         insufficientPermissions: (_) =>
                             'Insufficient permission...',
-                        unableToUpdate: (_) => 'This error will never happen while deleting...',
+                        unableToUpdate: (_) =>
+                            'This error will never happen while deleting...',
                       ),
                     ).show(context);
+                  },
+                  deleteSuccess: (state) {
+                    FlushbarHelper.createError(
+                            duration: const Duration(seconds: 5),
+                            message: 'Item successfully deleted.')
+                        .show(context);
                   },
                   orElse: () {});
             },

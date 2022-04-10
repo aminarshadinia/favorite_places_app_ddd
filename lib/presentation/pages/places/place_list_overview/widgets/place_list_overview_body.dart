@@ -30,9 +30,6 @@ class _PlaceCardWidgetState extends State<PlaceCardWidget> {
           children: snapshot.data!.docs.map((DocumentSnapshot document) {
             Map<String, dynamic> data =
                 document.data()! as Map<String, dynamic>;
-              // print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxxxx$data');
-              // final doc = FirebaseFirestore.instance.collection('users').doc().id;
-              // print(doc);
             return Column(children: [
               PlaceCard(data),
             ]);
