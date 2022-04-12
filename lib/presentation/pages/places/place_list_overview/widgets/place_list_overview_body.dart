@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:sample_app/infrastructure/core/firestore_helpers.dart';
+
 import 'package:sample_app/presentation/pages/places/place_list_overview/widgets/place_card_widget.dart';
 
 class PlaceCardWidget extends StatefulWidget {

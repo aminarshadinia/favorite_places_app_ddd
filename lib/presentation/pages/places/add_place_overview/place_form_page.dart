@@ -1,14 +1,14 @@
+import 'package:flutter/material.dart';
+
 import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sample_app/application/places/place_form/place_form_bloc.dart';
+import 'package:sample_app/injectable.dart';
 
 import 'package:sample_app/domain/place/place.dart';
-import 'package:sample_app/injectable.dart';
-import 'package:sample_app/presentation/pages/places/add_place_overview/widgets/place_form_fields_widget.dart';
+import 'package:sample_app/application/places/place_form/place_form_bloc.dart';
 import 'package:sample_app/presentation/pages/places/place_list_overview/places_list_page.dart';
+import 'package:sample_app/presentation/pages/places/add_place_overview/widgets/place_form_fields_widget.dart';
 
 class PlaceFormPage extends StatelessWidget {
   static const routeName = '/add-place';

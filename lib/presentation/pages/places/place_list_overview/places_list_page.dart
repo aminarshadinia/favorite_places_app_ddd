@@ -1,9 +1,11 @@
-import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
+
+import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sample_app/injectable.dart';
+
 import 'package:sample_app/application/auth/auth_bloc.dart';
 import 'package:sample_app/application/places/place_actor/place_actor_bloc.dart';
-import 'package:sample_app/injectable.dart';
 import 'package:sample_app/presentation/pages/places/add_place_overview/place_form_page.dart';
 import 'package:sample_app/presentation/pages/places/place_list_overview/widgets/place_list_overview_body.dart';
 import 'package:sample_app/presentation/pages/sign_in/sign_in_page.dart';
@@ -29,15 +31,6 @@ class PlacesListPage extends StatelessWidget {
           BlocListener<PlaceActorBloc, PlaceActorState>(
             listener: (context, state) {
               state.maybeMap(
-                  // actionInProgress: (state) {
-                  //   if(state == true) {
-                  //   const Scaffold(
-                  //     body: Center(
-                  //       child: CircularProgressIndicator(),
-                  //     ),
-                  //   );
-                  //   }
-                  // },
                   deleteFailure: (state) {
                     FlushbarHelper.createError(
                       duration: const Duration(seconds: 5),

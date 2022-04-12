@@ -1,26 +1,21 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
+
 import 'package:sample_app/domain/auth/auth_failure.dart';
 import 'package:sample_app/domain/auth/i_auth_facade.dart';
+import 'package:sample_app/domain/auth/user.dart';
 import 'package:sample_app/domain/auth/value_objects.dart';
 import 'package:sample_app/domain/core/values_objects.dart';
-import 'package:sample_app/infrastructure/auth/firebase_user_mapper.dart';
-import '../../domain/auth/user.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 @LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
-  // User? currentUser = FirebaseAuth?.instance.currentUser;
-// var currUser = FirebaseAuth.instance.currentUser;
 
-  FirebaseAuthFacade(
-      this._firebaseAuth, this._googleSignIn);
+  FirebaseAuthFacade(this._firebaseAuth, this._googleSignIn);
 
   //  @override
   // Future<Option<Userz>> getSignedInUser() async => _firebaseAuth!.currentUser!.then((u) => optionOf(_firebaseUserMapper.toDomain(u)));
@@ -37,7 +32,6 @@ class FirebaseAuthFacade implements IAuthFacade {
   // @override
   // Future<Option<Userz>>? getSignedInUser() => _firebaseAuth.currentUser != null
   //     ? (u) => optionOf(_firebaseUserMapper.toDomain(u)) :  ;
-      
 
   @override
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
@@ -80,8 +74,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       );
       return right(unit);
     } on FirebaseException catch (e) {
-      if (e.code == 'wrong-password' ||
-          e.code == 'user-not-found') {
+      if (e.code == 'wrong-password' || e.code == 'user-not-found') {
         return left(const AuthFailure.invalidEmailAndPasswordCombination());
       } else {
         return left(const AuthFailure.serverError());

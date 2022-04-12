@@ -1,10 +1,10 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'package:sample_app/domain/core/failures.dart';
-import 'package:sample_app/domain/core/value_validator.dart';
 import 'package:sample_app/domain/core/values_objects.dart';
 import 'package:sample_app/domain/place/value_objects.dart';
+
 part 'place.freezed.dart';
 
 @freezed
@@ -17,15 +17,14 @@ abstract class Place with _$Place {
     required PlaceImage image,
   }) = _Place;
 
-  factory Place.empty() => Place (
-    id: UniqueId(),
-    title: PlaceTitle(''),
-    latitude: PlaceLatitude(0.0),
-    longitude: PlaceLongitude(0.0),
-    image: PlaceImage(''),
-  );
+  factory Place.empty() => Place(
+        id: UniqueId(),
+        title: PlaceTitle(''),
+        latitude: PlaceLatitude(0.0),
+        longitude: PlaceLongitude(0.0),
+        image: PlaceImage(''),
+      );
 }
-
 
 extension PlaceX on Place {
   Option<ValueFailure<dynamic>> get failureOption {

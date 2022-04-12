@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+
 import '../core/failures.dart';
 import '../core/value_validator.dart';
 import '../core/values_objects.dart';
@@ -13,13 +14,12 @@ class EmailAddress extends ValueObject<String> {
   factory EmailAddress(String input) {
     assert(input != null); //validate that input is not null
     return EmailAddress._(
-      // we can call this function right from the constructor parameters cuz our validateEmail func returns String also our Private constructor Accepts String.
       validateEmailAddress(input),
+      // we can call this function right from the constructor parameters cuz our validateEmail func returns String also our Private constructor Accepts String.
     );
   }
 
   const EmailAddress._(this.value);
-
 }
 
 class Password extends ValueObject<String> {
@@ -33,8 +33,4 @@ class Password extends ValueObject<String> {
   }
 
   const Password._(this.value);
-
 }
-
-
-

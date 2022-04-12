@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:sample_app/application/places/place_actor/place_actor_bloc.dart';
 import 'package:sample_app/presentation/pages/places/place_list_overview/widgets/place_details.dart';
 

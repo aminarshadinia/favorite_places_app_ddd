@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+
 import 'package:sample_app/domain/auth/i_auth_facade.dart';
 
 part 'auth_event.dart';
@@ -15,31 +16,25 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final IAuthFacade _authFacade;
 
   AuthBloc.authBloc(this._authFacade) : super(const AuthState.initial());
-  // AuthState get initialState => const AuthState.initial();
 
   AuthBloc(this._authFacade) : super(const AuthState.initial()) {
-    on<AuthEvent>((event, emit) async {
-      await event.map(
-        authCheckRequested: (e) async {
-          final userOption = await _authFacade.getSignedInUser();
-          // print(userOption);
-          // List<Object> get props => [text, number];
-
-          // emit(
-          //   userOption?.fold(
-          //     () => const AuthState.authenticated(),
-          //     (user) => const AuthState.authenticated(),
-          //   )
-          // );
-          emit(
-            userOption == null ? const AuthState.unauthenticated() : const AuthState.authenticated(), 
-          );
-        },
-        signedOut: (e) async {
-          await _authFacade.signOut();
-          emit(const AuthState.unauthenticated());
-        },
-      );
-    });
+    on<AuthEvent>(
+      (event, emit) async {
+        await event.map(
+          authCheckRequested: (e) async {
+            final userOption = await _authFacade.getSignedInUser();
+            emit(
+              userOption == null
+                  ? const AuthState.unauthenticated()
+                  : const AuthState.authenticated(),
+            );
+          },
+          signedOut: (e) async {
+            await _authFacade.signOut();
+            emit(const AuthState.unauthenticated());
+          },
+        );
+      },
+    );
   }
 }

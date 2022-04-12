@@ -6,7 +6,6 @@ part of 'place_dtos.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-
 Map<String, dynamic> _$PlaceDTOToJson(PlaceDTO instance) => <String, dynamic>{
       'id': instance.id,
       'title': instance.title,

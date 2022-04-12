@@ -1,9 +1,10 @@
 import 'dart:ui';
+import 'package:flutter/material.dart';
 
 import 'package:another_flushbar/flushbar_helper.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
+
 import 'package:sample_app/application/auth/auth_bloc.dart';
 import 'package:sample_app/application/auth/sign_in_form/sign_in_form_bloc.dart';
 import 'package:sample_app/presentation/pages/places/place_list_overview/places_list_page.dart';
@@ -58,7 +59,7 @@ class _SignInFormState extends State<SignInForm> {
 
     return BlocConsumer<SignInFormBloc, SignInFormState>(
       listener: (context, state) {
-         state.authFailureOrSuccessOption.fold(
+        state.authFailureOrSuccessOption.fold(
           () {},
           (either) {
             either.fold(
@@ -76,8 +77,10 @@ class _SignInFormState extends State<SignInForm> {
               },
               (_) {
                 Navigator.of(context).pushNamed(PlacesListPage.routeName);
-                // once the use is signes is the state of authentication will change to 'authenticated' 
-                context.read<AuthBloc>().add(const AuthEvent.authCheckRequested());
+                // once the use is signes is the state of authentication will change to 'authenticated'
+                context
+                    .read<AuthBloc>()
+                    .add(const AuthEvent.authCheckRequested());
               },
             );
           },
@@ -264,19 +267,21 @@ class _SignInFormState extends State<SignInForm> {
                         },
                         style: elevatedStyle,
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                          const Text(
-                            ' Login with google ',
-                          ),
-                          Image.network(
-                            'https://freesvg.org/img/1534129544.png',
-                            height: 25,
-                          ),
-                        ]),
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                ' Login with google ',
+                              ),
+                              Image.network(
+                                'https://freesvg.org/img/1534129544.png',
+                                height: 25,
+                              ),
+                            ]),
                       ),
-                      if(state.isSubmitting) ...[
-                        const SizedBox(height: 10,),
+                      if (state.isSubmitting) ...[
+                        const SizedBox(
+                          height: 10,
+                        ),
                         const LinearProgressIndicator()
                       ]
                     ],

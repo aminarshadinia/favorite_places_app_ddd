@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class PlaceDetals extends StatelessWidget {
@@ -32,7 +32,6 @@ class PlaceDetals extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: ListView(
-          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             const SizedBox(
               height: 25.0,

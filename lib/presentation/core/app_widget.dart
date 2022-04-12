@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sample_app/application/auth/auth_bloc.dart';
 import 'package:sample_app/injectable.dart';
+
+import 'package:sample_app/application/auth/auth_bloc.dart';
 import 'package:sample_app/presentation/pages/places/add_place_overview/place_form_page.dart';
 import 'package:sample_app/presentation/pages/places/place_list_overview/places_list_page.dart';
 import 'package:sample_app/presentation/pages/sign_in/sign_in_page.dart';
@@ -18,7 +20,7 @@ class AppWidget extends StatelessWidget {
         BlocProvider(
           create: (context) =>
               getIt<AuthBloc>()..add(const AuthEvent.authCheckRequested()),
-              // we tell bloc to do sth right from the get go
+          // we tell bloc to do sth right from the get go
         ),
       ],
       child: MaterialApp(
@@ -28,7 +30,9 @@ class AppWidget extends StatelessWidget {
           SplashPage.routeName: (context) => const SplashPage(),
           SignInPage.routeName: (context) => const SignInPage(),
           PlacesListPage.routeName: (context) => const PlacesListPage(),
-          PlaceFormPage.routeName: (context) => const PlaceFormPage(placeFormData: null,),
+          PlaceFormPage.routeName: (context) => const PlaceFormPage(
+                placeFormData: null,
+              ),
         },
         theme: ThemeData.dark().copyWith(
           primaryColor: Colors.blue,
