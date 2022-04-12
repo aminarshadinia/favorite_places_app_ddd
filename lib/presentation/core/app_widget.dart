@@ -24,6 +24,7 @@ class AppWidget extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Sample App',
         initialRoute: '/',
         routes: {
