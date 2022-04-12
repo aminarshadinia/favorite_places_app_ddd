@@ -33,13 +33,25 @@ class PlaceDetals extends StatelessWidget {
         padding: const EdgeInsets.all(15.0),
         child: ListView(
           children: [
-            const SizedBox(
-              height: 25.0,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                const Text(
+                  'Place Details..',
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
+                ),
+                  TextButton.icon(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      icon: const Icon(Icons.close),
+                      label: const Text('Close')),
+                ],
+              ),
             ),
-            const Center(
-                child: Text('Place Details..',
-                    style:
-                        TextStyle(fontSize: 25, fontWeight: FontWeight.w600))),
+            
             const SizedBox(
               height: 5.0,
             ),
