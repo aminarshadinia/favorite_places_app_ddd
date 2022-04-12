@@ -8,7 +8,7 @@ import 'package:sample_app/domain/place/value_objects.dart';
 part 'place.freezed.dart';
 
 @freezed
-abstract class Place with _$Place {
+class Place with _$Place {
   const factory Place({
     required UniqueId id,
     required PlaceTitle title,
