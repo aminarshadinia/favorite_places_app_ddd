@@ -16,7 +16,7 @@ class PlaceCard extends StatelessWidget {
         contentPadding: const EdgeInsets.all(6),
         onTap: () {
           showDialog(
-            barrierColor: Colors.black.withOpacity(0.8),
+            barrierColor: Colors.black.withOpacity(1),
             context: context,
             builder: (BuildContext context) {
               return PlaceDetals(
