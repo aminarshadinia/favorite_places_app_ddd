@@ -29,7 +29,7 @@ class AppDrawer extends StatelessWidget {
           leading: const Icon(Icons.exit_to_app),
           title: const Text('Exit'),
           onTap: () {
-            context.read()<AuthBloc>().add(const AuthEvent.signedOut());
+            context.read<AuthBloc>().add(const AuthEvent.signedOut());
           },
         ),
       ],
