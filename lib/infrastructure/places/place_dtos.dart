@@ -41,7 +41,7 @@ class PlaceDTO with _$PlaceDTO {
 extension PlaceDTOX on PlaceDTO {
   Place toDomain() {
     return Place(
-      id: UniqueId.formUniqueString(id),
+      id: UniqueId.fromUniqueString(id),
       title: PlaceTitle(title),
       image: PlaceImage(image),
       latitude: PlaceLatitude(latitude),
