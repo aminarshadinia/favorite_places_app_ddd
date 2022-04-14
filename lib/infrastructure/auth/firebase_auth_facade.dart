@@ -17,21 +17,13 @@ class FirebaseAuthFacade implements IAuthFacade {
 
   FirebaseAuthFacade(this._firebaseAuth, this._googleSignIn);
 
-  //  @override
-  // Future<Option<Userz>> getSignedInUser() async => _firebaseAuth!.currentUser!.then((u) => optionOf(_firebaseUserMapper.toDomain(u)));
-
   @override
   getSignedInUser() {
     if (_firebaseAuth.currentUser != null) {
       final user = _firebaseAuth.currentUser;
-      // print(user?.uid);
       return some(Userz(id: UniqueId?.fromUniqueString(user!.uid)));
     }
   }
-
-  // @override
-  // Future<Option<Userz>>? getSignedInUser() => _firebaseAuth.currentUser != null
-  //     ? (u) => optionOf(_firebaseUserMapper.toDomain(u)) :  ;
 
   @override
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
@@ -40,8 +32,7 @@ class FirebaseAuthFacade implements IAuthFacade {
   }) async {
     final emailAddressStr = emailAddress.value.getOrElse(() => 'INVALID EMAIL');
     final passwordStr = password.value.getOrElse(() => 'INVALID PASSWORD');
-    // _firebaseAuth.currentUser().then((value) => value.uid);
-    // invalid email and weak password are handled before in login page
+    // invalid email and weak password are handled
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
         email: emailAddressStr,
@@ -62,11 +53,8 @@ class FirebaseAuthFacade implements IAuthFacade {
     required EmailAddress emailAddress,
     required Password password,
   }) async {
-    // print(_firebaseAuth.currentUser);
-    // print(_firebaseAuth.currentUser?.email);
     final emailAddressStr = emailAddress.getOrCrash();
     final passwordStr = password.getOrCrash();
-    // invalid email and weak password are handled before in login page
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
         email: emailAddressStr,
