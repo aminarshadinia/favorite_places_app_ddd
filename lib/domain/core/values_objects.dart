@@ -54,7 +54,7 @@ class UniqueId extends ValueObject<String> {
     );
   }
 
-// we have to trust DB ids which are unique
+// we have to trust DB ids which are unique cuz we cannot validate them to be really unique
   factory UniqueId.fromUniqueString(String uniqueId) {
     assert(uniqueId != null);
     return UniqueId._(right(uniqueId));

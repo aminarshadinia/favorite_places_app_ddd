@@ -21,10 +21,6 @@ extension FirestoreX on FirebaseFirestore {
         .doc(user.id.getOrCrash());
     // if id is not availabl we gonna crash the app
 
-    // Wecan ALSO do the code like this but its better to devide the codes so we use DocumentRefrence extension
-    // return FirebaseFirestore.instance
-    // .collection('users')
-    // .doc(user.id.getOrCrash()).collection('places');
   }
 }
 
