@@ -22,10 +22,10 @@ class SplashPage extends StatelessWidget {
           initial: (_) {},
           // if state is authenticated : code below
           authenticated: (_) {
-            Navigator.of(context).pushNamed(PlacesListPage.routeName);
+            Navigator.of(context).pushReplacementNamed(PlacesListPage.routeName);
           },
           unauthenticated: (_) {
-            Navigator.of(context).pushNamed(SignInPage.routeName);
+            Navigator.of(context).pushReplacementNamed(SignInPage.routeName);
           },
         );
       },
