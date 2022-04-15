@@ -50,12 +50,13 @@ class PlaceFormPage extends StatelessWidget {
                   ).show(context);
                 },
                 (_) {
-                  // if the is no feailure but instead we get a Unit from the either
-                  // Can't be just a simple pop. If another route (like a Flushbar) is on top of stack, we'll need to pop even that to get to
-                  // the overview page.
-                  // Navigator.of(context)
-                  //     .popUntil(ModalRoute.withName(PlacesListPage.routeName));
-                  Navigator.of(context).pushNamed(PlacesListPage.routeName);
+                  /**
+                  * if there is no failure but instead we get a Unit from the either
+                  * Can't be just a simple pop. If another route (like a Flushbar) is on top of stack, we'll need to pop even that to get to
+                  * the overview page.
+                   */
+                  Navigator.of(context)
+                      .popUntil(ModalRoute.withName(PlacesListPage.routeName));
                 },
               );
             },

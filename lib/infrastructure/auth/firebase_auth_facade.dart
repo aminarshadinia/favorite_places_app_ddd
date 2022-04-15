@@ -21,7 +21,9 @@ class FirebaseAuthFacade implements IAuthFacade {
   getSignedInUser() {
     if (_firebaseAuth.currentUser != null) {
       final user = _firebaseAuth.currentUser;
-      return some(Userz(id: UniqueId?.fromUniqueString(user!.uid)));
+      return Userz(
+        id: UniqueId?.fromUniqueString(user!.uid),
+      );
     }
   }
 
