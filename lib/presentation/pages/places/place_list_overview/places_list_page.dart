@@ -46,7 +46,7 @@ class PlacesListPage extends StatelessWidget {
                     ).show(context);
                   },
                   deleteSuccess: (state) {
-                    FlushbarHelper.createError(
+                    FlushbarHelper.createSuccess(
                             duration: const Duration(seconds: 5),
                             message: 'Item successfully deleted.')
                         .show(context);
