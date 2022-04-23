@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sample_app/application/places/place_watcher/place_watcher_bloc.dart';
 import 'package:sample_app/injectable.dart';
 
 import 'package:sample_app/application/auth/auth_bloc.dart';
@@ -17,8 +18,18 @@ class PlacesListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<PlaceActorBloc>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt<PlaceActorBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<PlaceWatcherBloc>()
+            ..add(
+              const PlaceWatcherEvent.watchAllStarted(),
+            ),
+        ),
+      ],
       child: MultiBlocListener(
         listeners: [
           BlocListener<AuthBloc, AuthState>(
@@ -68,7 +79,8 @@ class PlacesListPage extends StatelessWidget {
             ],
           ),
           drawer: const AppDrawer(),
-          body: const PlaceCardWidget(),
+          body: const Testi(),
+          // body: const PlaceCardWidget(),
         ),
       ),
     );

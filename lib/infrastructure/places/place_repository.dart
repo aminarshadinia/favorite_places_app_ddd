@@ -78,4 +78,26 @@ class PlaceRepository implements IPlaceRepository {
       }
     }
   }
+
+  // @override
+  // Stream<Either<PlaceFailure, Place>> watchAll() async* {
+  //   FirebaseFirestore.instance.collection('users').snapshots().map(
+  //         (event) => right(
+  //           event.docs.map(
+  //             (doc) => PlaceDTO.fromFirestore(doc).toDomain(),
+  //           ),
+  //         ),
+  //       );
+  // }
+  @override
+  Stream<Either<PlaceFailure, Place>> watchAll() async* {
+    FirebaseFirestore.instance.collection('users').snapshots();
+    
+  }
+  // @override
+  // Stream<Either<PlaceFailure, Place>> watchAll() async* {
+  //   FirebaseFirestore.instance.collection('users').snapshots().map((snapshot) {
+  //     return snapshot.docs.map((doc) => PlaceDTO.fromFirestore(doc).toDomain());
+  //   });
+  // }
 }
