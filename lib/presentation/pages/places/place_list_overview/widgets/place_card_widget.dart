@@ -68,7 +68,11 @@ class PlaceCard extends StatelessWidget {
           ),
         ),
         trailing: const Icon(Icons.info_outline),
-        title: Text(place['title']),
+        title: Text(
+          place['title'],
+          softWrap: true,
+          overflow: TextOverflow.fade,
+        ),
       ),
       elevation: 10,
       shadowColor: Colors.blue,
