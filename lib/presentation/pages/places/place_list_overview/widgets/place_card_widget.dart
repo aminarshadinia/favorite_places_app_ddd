@@ -13,7 +13,7 @@ class PlaceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        contentPadding: const EdgeInsets.all(6),
+        contentPadding: const EdgeInsets.all(10),
         onTap: () {
           showDialog(
             barrierColor: Colors.black.withOpacity(1),
@@ -56,10 +56,15 @@ class PlaceCard extends StatelessWidget {
           );
         },
         leading: SizedBox(
-          height: 70.0,
-          width: 70.0,
-          child: Image(
-            image: NetworkImage(place['image']),
+          height: 80.0,
+          width: 80.0,
+          child: ClipRRect(
+            borderRadius: const BorderRadius.all(
+              Radius.circular(10),
+            ),
+            child: Image(
+              image: NetworkImage(place['image']),
+            ),
           ),
         ),
         trailing: const Icon(Icons.info_outline),
