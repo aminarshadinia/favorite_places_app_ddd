@@ -21,7 +21,7 @@ class _PlaceCardWidgetState extends State<PlaceCardWidget> {
       stream: _usersStream,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
-          return const Text('Something went wrong');
+          return Text('Somthing went wrong... ${'\n'} ${snapshot.error.toString()}');
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
