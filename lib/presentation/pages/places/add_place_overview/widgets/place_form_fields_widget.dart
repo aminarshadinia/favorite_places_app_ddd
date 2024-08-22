@@ -28,7 +28,7 @@ class _AddPlaceFieldsState extends State<AddPlaceFields> {
         return Padding(
           padding: const EdgeInsets.all(15.0),
           child: Form(
-            autovalidate: state.showErrorMessages,
+            // autovalidate: state.showErrorMessages,
             child: Column(
               children: [
                 TextFormField(

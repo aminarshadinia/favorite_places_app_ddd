@@ -24,8 +24,8 @@ class _SignInFormState extends State<SignInForm> {
   @override
   Widget build(BuildContext context) {
     final ButtonStyle elevatedStyle = ElevatedButton.styleFrom(
-        primary: Colors.black, // background
-        onPrimary: Colors.white, // forehead
+        // primary: Colors.black, // background
+        // onPrimary: Colors.white, // forehead
         minimumSize: const Size(0, 45),
         padding: const EdgeInsets.symmetric(
           vertical: 10,
@@ -94,7 +94,7 @@ class _SignInFormState extends State<SignInForm> {
               children: [
                 Form(
                   // line below allow immidiate validatioin of input as soon as a character changes
-                  autovalidate: state.showErrorMessages,
+                  // autovalidate: state.showErrorMessages,
                   child: Column(
                     children: [
                       const Text(

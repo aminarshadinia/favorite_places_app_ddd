@@ -99,13 +99,13 @@ class SavingInProgressOveylay extends StatelessWidget {
             children: [
               const CircularProgressIndicator(),
               const SizedBox(height: 10),
-              Text(
-                'Saving',
-                style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                      color: Colors.white,
-                      fontSize: 16,
-                    ),
-              )
+              // Text(
+              //   'Saving',
+              //   style: Theme.of(context).textTheme.bodyText2!.copyWith(
+              //         color: Colors.white,
+              //         fontSize: 16,
+              //       ),
+              // )
             ],
           ),
         ),
@@ -143,12 +143,12 @@ class PlaceFormPageScaffold extends StatelessWidget {
           buildWhen: (c, p) => p.showErrorMessages != c.showErrorMessages,
           builder: (context, state) {
             return Form(
-                autovalidate: state.showErrorMessages,
+                // autovalidate: state.showErrorMessages,
                 child: SingleChildScrollView(
-                  child: Column(
-                    children: const [AddPlaceFields()],
-                  ),
-                ));
+              child: Column(
+                children: const [AddPlaceFields()],
+              ),
+            ));
           },
         ));
   }
